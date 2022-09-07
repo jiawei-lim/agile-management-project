@@ -1,0 +1,5 @@
+mat-card {
+    margin:20px;
+    border: 1px solid grey;
+    min-height: 250px;
+}

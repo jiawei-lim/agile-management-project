@@ -1,0 +1,7 @@
+<mat-card [ngStyle]="{'background-color':colorMappings[taskItem.priority]}" (click)="openDialog('0ms','0ms')">
+    <mat-card-title>{{taskItem.name}}</mat-card-title>
+    <mat-card-subtitle>{{taskItem.assignee}}</mat-card-subtitle>
+    <p>{{taskItem.priority}}</p>
+    <p>{{taskItem.status}}</p>
+    <p>{{taskItem.due_date}}</p>
+</mat-card>
