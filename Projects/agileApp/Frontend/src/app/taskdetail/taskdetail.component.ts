@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output,Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { task } from '../types';
 
 @Component({
   selector: 'app-taskdetail',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskdetailComponent implements OnInit {
 
-  constructor() { }
+  @Output() submitClicked = new EventEmitter<task>();
+  
+  constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: task) { }
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
 }

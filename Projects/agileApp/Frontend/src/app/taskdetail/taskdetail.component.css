@@ -1,0 +1,8 @@
+.detail-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.task-detail{
+    margin: 20px;
+}

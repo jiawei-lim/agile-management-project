@@ -20,7 +20,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { TaskformComponent } from './taskform/taskform.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,9 +30,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     BacklogComponent,
     TaskComponent,
     TasklistComponent,
-    TaskdetailComponent
+    TaskdetailComponent,
+    TaskformComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
