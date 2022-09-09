@@ -10,4 +10,6 @@ router.post('/insert',controller.addTask) // POST request (application sends dat
 
 router.post('/delete',controller.deleteTask)
 
+router.post('/update',controller.updateTask)
+
 module.exports = router

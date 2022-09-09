@@ -36,9 +36,32 @@ const deleteTask = (req,res) => {
     }).then(succ => res.sendStatus(200))
     .catch(err=>res.sendStatus(500))
 }
+
+const updateTask = (req,res) => {
+    msg = req.body
+    Task.update({
+        name:msg.name,
+        description:msg.description,
+        status:msg.status,
+        priority:msg.priority,
+        tag:msg.tag,
+        assignee:msg.assignee,
+        story_point:msg.story_point,
+        due_date:msg.due_date,
+    },{
+        where:{task_id:msg.task_id}
+    }).then((suc)=>{
+        res.sendStatus(200)
+    }).catch((err)=>{
+        console.log(err)
+        res.sendStatus(500)
+    })
+}
+
 // Export the above method
 module.exports = {
     getTasks,
     addTask,
-    deleteTask
+    deleteTask,
+    updateTask
 }
