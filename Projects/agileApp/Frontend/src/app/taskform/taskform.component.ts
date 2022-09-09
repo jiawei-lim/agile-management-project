@@ -12,7 +12,8 @@ export class TaskformComponent implements OnInit {
 
   @Output() submitClicked = new EventEmitter<task>();
   isUpdate = false;
-  formTitle = "Create new task"
+  formTitle = "Create new task";
+  buttonName = "Create";
   taskDataForm:any;
 
   constructor(
@@ -38,10 +39,15 @@ export class TaskformComponent implements OnInit {
       if(data){
         this.isUpdate = true;
         this.formTitle = "Update existing task";
-        this.taskDataForm.controls['name'].setValue(data.name);
-        this.taskDataForm.controls['name'].setValue(data.name);
-        this.taskDataForm.controls['name'].setValue(data.name);
-        this.taskDataForm.controls['name'].setValue(data.name);
+        this.buttonName = "Update";
+        this.taskDataForm.controls['name'].setValue(this.data.name);
+        this.taskDataForm.controls['description'].setValue(this.data.description);
+        this.taskDataForm.controls['due_date'].setValue(this.data.due_date);
+        this.taskDataForm.controls['assignee'].setValue(this.data.assignee);
+        this.taskDataForm.controls['priority'].setValue(this.data.priority);
+        this.taskDataForm.controls['status'].setValue(this.data.status);
+        this.taskDataForm.controls['story_point'].setValue(this.data.story_point);
+        this.taskDataForm.controls['tag'].setValue(this.data.tag);
       }
 
     }

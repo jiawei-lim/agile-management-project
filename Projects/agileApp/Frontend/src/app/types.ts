@@ -8,7 +8,7 @@ export interface task {
     priority: priority,
     tag: string,
     assignee:string,
-    storypoint:string,
+    story_point:number,
     create_date:string,
     due_date:string
 }

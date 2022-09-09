@@ -1,62 +1,4 @@
 <h1>{{formTitle}}</h1>
-<!-- <form #taskForm="ngForm" (ngSubmit)="processData(taskForm.value)">
-    <div class="gird-form">
-        <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="enter name of task" ngModel>
-        </mat-form-field>
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <input matInput placeholder="Description" name="description" ngModel>
-        </mat-form-field>
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Status</mat-label>
-            <mat-select name="status" ngModel>
-            <mat-option [value]="'To do'"> To do</mat-option>
-            <mat-option [value]="'In Progress'">In Progress</mat-option>
-            <mat-option [value]="'To Review'"> To Review</mat-option>
-            <mat-option [value]="'Completed'"> Completed</mat-option>
-            </mat-select>
-        </mat-form-field>
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Priority</mat-label>
-            <mat-select name="priority" ngModel> 
-            <mat-option [value]="'High'"> High</mat-option>
-            <mat-option [value]="'Medium'">Medium</mat-option>
-            <mat-option [value]="'Low'">Low</mat-option>
-            </mat-select>
-        </mat-form-field>
-       
-        <mat-form-field appearance="outline">
-            <mat-label>Tag</mat-label>
-            <input matInput placeholder="enter a tag" ngModel name="tag">
-        </mat-form-field>
-        
-
-        <mat-form-field appearance="outline">
-            <mat-label>Assignee</mat-label>
-            <input matInput placeholder="Assignee" ngModel name="assignee">
-        </mat-form-field>
-      
-        <mat-form-field appearance="outline">
-            <mat-label>Story Point</mat-label>
-            <input matInput placeholder="Story Point" ngModel name="story_point">
-        </mat-form-field>
-       
-
-        <mat-form-field appearance="outline">
-            <mat-label>Due Date</mat-label>
-            <input matInput placeholder="Due Date" ngModel name="due_date">
-        </mat-form-field>
-        </div>
-        <button mat-raised-button type="submit" color="primary" >Create</button>
-   
-</form> -->
-
-
 <form [formGroup]="taskDataForm" (ngSubmit)="processData()">
     <div class="gird-form">
         <mat-form-field appearance="outline">
@@ -110,7 +52,7 @@
             <input matInput placeholder="Due Date"  name="due_date" formControlName="due_date">
         </mat-form-field>
     </div>
-    <button mat-raised-button type="submit" color="primary" >Create</button>
+    <button mat-raised-button type="submit" color="primary">{{buttonName}}</button>
 </form>
 
 
