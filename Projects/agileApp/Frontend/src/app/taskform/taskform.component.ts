@@ -34,7 +34,7 @@ export class TaskformComponent implements OnInit {
         assignee:[''],
         story_point:[''],
         due_date:[''],
-        created_date:['']
+        created_date:[''],
       });
 
 
@@ -68,6 +68,7 @@ export class TaskformComponent implements OnInit {
       this.submitClicked.emit(this.taskDataForm.value);
     }
     else{
+      this.taskDataForm.controls['task_id'].setValue(this.data.task_id)
       this.updateClicked.emit(this.taskDataForm.value);
     }
     

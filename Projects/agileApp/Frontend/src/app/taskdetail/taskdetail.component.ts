@@ -12,6 +12,8 @@ import { TaskformComponent } from '../taskform/taskform.component';
 export class TaskdetailComponent implements OnInit {
 
   @Output() submitClicked = new EventEmitter<task>();
+
+  DialogRef!: MatDialogRef<TaskformComponent>;
   
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: task,
@@ -23,8 +25,15 @@ export class TaskdetailComponent implements OnInit {
   }
 
   onEdit(){
-    this.dialog.open(TaskformComponent,{
+    this.DialogRef = this.dialog.open(TaskformComponent,{
       data:this.data
+    })
+
+    this.DialogRef.componentInstance.updateClicked.subscribe(res=>{
+      console.log(res)
+      this.db.updateTask(res).subscribe(res=>{
+        console.log("Good")
+      },err=>console.log(err))
     })
   }
 

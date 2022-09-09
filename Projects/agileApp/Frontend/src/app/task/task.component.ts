@@ -30,6 +30,8 @@ export class TaskComponent implements OnInit {
       data:this.taskItem,
     });
 
+    
+
   }
 
   //delete
