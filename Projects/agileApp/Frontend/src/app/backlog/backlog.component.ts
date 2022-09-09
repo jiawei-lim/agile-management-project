@@ -45,6 +45,8 @@ DialogRef: MatDialogRef<TaskformComponent>;
 
         this.dialog.closeAll();
     });
+
+    this.DialogRef.componentInstance.updateClicked.subscribe()
   }
 
 
