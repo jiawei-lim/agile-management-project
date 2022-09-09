@@ -25,4 +25,8 @@ export class DbService {
   insertTask(data:task):Observable<any>{
     return this.http.post(this.url+"/tasks/insert",data,this.httpOptions)
   }
+
+  deleteTask(data:task):Observable<any>{
+    return this.http.post(this.url+"/tasks/delete",data,this.httpOptions)
+  }
 }
