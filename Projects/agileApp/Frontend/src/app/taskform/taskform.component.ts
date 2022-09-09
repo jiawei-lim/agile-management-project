@@ -11,6 +11,8 @@ import { FormBuilder } from '@angular/forms';
 export class TaskformComponent implements OnInit {
 
   @Output() submitClicked = new EventEmitter<task>();
+  @Output() updateClicked = new EventEmitter<task>();
+  
   isUpdate = false;
   formTitle = "Create new task";
   buttonName = "Create";
@@ -57,12 +59,18 @@ export class TaskformComponent implements OnInit {
 
 
   processData(){
-    const date = new Date();
-    const today = date.toDateString();
-    // taskData.create_date = today;
-    // this.submitClicked.emit(taskData);
-    this.taskDataForm.controls['created_date'].setValue(today)
-    this.submitClicked.emit(this.taskDataForm.value);
+    if(this.buttonName==="Create"){
+      const date = new Date();
+      const today = date.toDateString();
+      // taskData.create_date = today;
+      // this.submitClicked.emit(taskData);
+      this.taskDataForm.controls['created_date'].setValue(today)
+      this.submitClicked.emit(this.taskDataForm.value);
+    }
+    else{
+      this.updateClicked.emit(this.taskDataForm.value);
+    }
+    
   }
 
 }
