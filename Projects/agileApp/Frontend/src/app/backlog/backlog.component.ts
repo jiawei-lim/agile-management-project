@@ -56,8 +56,16 @@ DialogRef: MatDialogRef<TaskformComponent>;
     });
 
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
-        this.taskLists = this.taskLists.concat(result)
-        this.db.insertTask(result).subscribe(res=>alert("succ"),err=>console.log(err))
+
+        this.db.insertTask(result).subscribe(res=>{
+          
+        },err=>{
+          this.db.getTasks().subscribe(res=>{
+            this.taskLists = res
+          })
+        })
+        
+
         this.dialog.closeAll();
     });
   }
