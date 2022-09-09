@@ -16,17 +16,7 @@ export class TaskComponent implements OnInit {
 
   DialogRef: MatDialogRef<TaskdetailComponent>;
 
-  @Input() taskItem:task={
-    name: "Name",
-    description:"Desc",
-    status:"To Do",
-    priority: "High",
-    tag: "Technical",
-    assignee:"LJW",
-    storypoint:"testing",
-    create_date:"testing",
-    due_date:"testing"
-  };
+  @Input() taskItem:task;
 
   constructor(public dialog:MatDialog) { }
 

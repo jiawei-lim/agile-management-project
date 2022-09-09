@@ -13,30 +13,7 @@ import { DbService } from '../services/db.service';
 export class BacklogComponent implements OnInit {
 
   
-  taskLists:task[] = [
-    {
-      name: "Name",
-      description:"Desc",
-      status:"To do",
-      priority: "High",
-      tag: "Technical",
-      assignee:"LJW",
-      storypoint:"testing",
-      create_date:"testing",
-      due_date:"testing"
-  },
-  {
-    name: "To do somehting",
-    description:"Lorem ipsum si dolar amet wodmwdwd",
-    status:"Completed",
-    priority: "High",
-    tag: "Technical",
-    assignee:"LJW",
-    storypoint:"testing",
-    create_date:"3/8/2022",
-    due_date:"testing"
-  }
-]
+  taskLists:task[] = []
 
 DialogRef: MatDialogRef<TaskformComponent>;
 

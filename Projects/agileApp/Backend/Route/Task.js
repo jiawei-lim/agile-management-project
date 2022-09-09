@@ -8,4 +8,6 @@ router.get('/',controller.getTasks) // GET request (application requests for dat
 
 router.post('/insert',controller.addTask) // POST request (application sends data)
 
+router.post('/delete',controller.deleteTask)
+
 module.exports = router
