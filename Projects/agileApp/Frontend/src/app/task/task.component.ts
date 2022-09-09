@@ -14,9 +14,9 @@ export class TaskComponent implements OnInit {
     "Low":"#C9FFA2"
   }
 
-  DialogRef: MatDialogRef<TaskdetailComponent>;
+  DialogRef!: MatDialogRef<TaskdetailComponent>;
 
-  @Input() taskItem:task;
+  @Input() taskItem!:task;
 
   constructor(public dialog:MatDialog) { }
 
@@ -29,6 +29,7 @@ export class TaskComponent implements OnInit {
       exitAnimationDuration,
       data:this.taskItem,
     });
+
   }
 
   //delete

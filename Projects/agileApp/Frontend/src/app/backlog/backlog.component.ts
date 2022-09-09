@@ -13,7 +13,7 @@ import { DbService } from '../services/db.service';
 export class BacklogComponent implements OnInit {
 
   
-  taskLists:task[] = []
+  taskLists:task[] = [];
 
 DialogRef: MatDialogRef<TaskformComponent>;
 
