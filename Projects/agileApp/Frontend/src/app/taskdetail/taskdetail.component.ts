@@ -40,6 +40,7 @@ export class TaskdetailComponent implements OnInit {
   onDelete():void{
     this.db.deleteTask(this.data).subscribe(res=>{
       console.log("Success")
+      this.dialogRef.close()
     },err=>{
       console.log(err)
     })

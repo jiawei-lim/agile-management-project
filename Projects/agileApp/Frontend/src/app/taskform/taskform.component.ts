@@ -66,12 +66,12 @@ export class TaskformComponent implements OnInit {
       // this.submitClicked.emit(taskData);
       this.taskDataForm.controls['created_date'].setValue(today)
       this.submitClicked.emit(this.taskDataForm.value);
+      this.dialogRef.close()
     }
     else{
       this.taskDataForm.controls['task_id'].setValue(this.data.task_id)
       this.updateClicked.emit(this.taskDataForm.value);
+      this.dialogRef.close()
     }
-    
   }
-
 }

@@ -23,9 +23,9 @@ const addTask = (req,res) => {
         story_point:msg.story_point,
         due_date:msg.due_date,
     }).then((suc)=>{
-        res.sendStatus(200)
+        res.json("Success!")
     }).catch((err)=>{
-        res.sendStatus(500)
+        res.json("Error!")
     })
 }
 
@@ -33,8 +33,8 @@ const deleteTask = (req,res) => {
     msg = req.body
     Task.destroy({
         where: {task_id: msg.task_id}
-    }).then(succ => res.sendStatus(200))
-    .catch(err=>res.sendStatus(500))
+    }).then(succ => res.json("Success!"))
+    .catch(err=>res.json("Error!"))
 }
 
 const updateTask = (req,res) => {
@@ -51,10 +51,10 @@ const updateTask = (req,res) => {
     },{
         where:{task_id:msg.task_id}
     }).then((suc)=>{
-        res.sendStatus(200)
+        res.json("Success!")
     }).catch((err)=>{
         console.log(err)
-        res.sendStatus(500)
+        res.json("Error!")
     })
 }
 

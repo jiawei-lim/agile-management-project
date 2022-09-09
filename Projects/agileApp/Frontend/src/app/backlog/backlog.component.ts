@@ -35,26 +35,26 @@ DialogRef: MatDialogRef<TaskformComponent>;
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
 
         this.db.insertTask(result).subscribe(res=>{
-          
-        },err=>{
           this.db.getTasks().subscribe(res=>{
             this.taskLists = res
           })
+        },err=>{
+          
         })
         
 
         this.dialog.closeAll();
     });
 
-    this.DialogRef.componentInstance.updateClicked.subscribe(res=>{
-      alert("Update Triggered")
-      this.db.updateTask(res).subscribe(res=>{
-        console.log(res)
-      },err=>console.log(err))
-    },err=>{
-      console.log(err)
-    })
+  //   this.DialogRef.componentInstance.updateClicked.subscribe(res=>{
+  //     alert("Update Triggered")
+  //     this.db.updateTask(res).subscribe(res=>{
+  //       console.log(res)
+  //     },err=>console.log(err))
+  //   },err=>{
+  //     console.log(err)
+  //   })
+  // }
   }
-
 
 }
