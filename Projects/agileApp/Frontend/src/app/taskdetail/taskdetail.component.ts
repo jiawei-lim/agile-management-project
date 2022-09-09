@@ -33,6 +33,7 @@ export class TaskdetailComponent implements OnInit {
       console.log(res)
       this.db.updateTask(res).subscribe(res=>{
         console.log("Good")
+        location.reload()
       },err=>console.log(err))
     })
   }
@@ -41,6 +42,7 @@ export class TaskdetailComponent implements OnInit {
     this.db.deleteTask(this.data).subscribe(res=>{
       console.log("Success")
       this.dialogRef.close()
+      location.reload()
     },err=>{
       console.log(err)
     })

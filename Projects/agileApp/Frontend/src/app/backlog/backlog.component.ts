@@ -15,7 +15,7 @@ export class BacklogComponent implements OnInit {
   
   taskLists:task[] = [];
 
-DialogRef: MatDialogRef<TaskformComponent>;
+DialogRef!: MatDialogRef<TaskformComponent>;
 
   constructor(public dialog: MatDialog,private db:DbService) { 
   }
