@@ -29,8 +29,16 @@ const addTask = (req,res) => {
     })
 }
 
+const deleteTask = (req,res) => {
+    msg = req.body
+    Task.destroy({
+        where: {task_id: msg.task_id}
+    }).then(succ => res.sendStatus(200))
+    .catch(err=>res.sendStatus(500))
+}
 // Export the above method
 module.exports = {
     getTasks,
-    addTask
+    addTask,
+    deleteTask
 }
