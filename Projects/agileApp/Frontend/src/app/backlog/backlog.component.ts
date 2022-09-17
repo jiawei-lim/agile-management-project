@@ -3,6 +3,8 @@ import { task,priority } from '../types';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { DbService } from '../services/db.service';
+import { TaskListServicesService } from '../services/task-list-services.service';
+import {filter} from "rxjs"
 
 
 @Component({
@@ -17,13 +19,18 @@ export class BacklogComponent implements OnInit {
 
 DialogRef!: MatDialogRef<TaskformComponent>;
 
-  constructor(public dialog: MatDialog,private db:DbService) { 
+  constructor(public dialog: MatDialog,private db:DbService,private notification:TaskListServicesService) { 
   }
 
   ngOnInit(): void {
     this.db.getTasks().subscribe(res=>{
       this.taskLists = res
     })
+    this.notification.notificationSubject.pipe(filter((s)=>s==true)).subscribe((_)=>{
+      this.db.getTasks().subscribe(res=>{this.taskLists=res})
+    })
+      
+      
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {

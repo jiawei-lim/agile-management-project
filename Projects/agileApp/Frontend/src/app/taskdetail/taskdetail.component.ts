@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { task } from '../types';
 import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
+import { TaskListServicesService } from '../services/task-list-services.service';
 
 @Component({
   selector: 'app-taskdetail',
@@ -18,7 +19,8 @@ export class TaskdetailComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: task,
     private db:DbService,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog,
+    private notification:TaskListServicesService) { }
 
   ngOnInit(): void {
     console.log(this.data)
@@ -33,16 +35,20 @@ export class TaskdetailComponent implements OnInit {
       console.log(res)
       this.db.updateTask(res).subscribe(res=>{
         console.log("Good")
-        location.reload()
+        this.dialogRef.close()
+        this.notification.sendNotification(true)
+        // location.reload()
       },err=>console.log(err))
     })
+    
   }
 
   onDelete():void{
     this.db.deleteTask(this.data).subscribe(res=>{
       console.log("Success")
       this.dialogRef.close()
-      location.reload()
+      this.notification.sendNotification(true)
+      // location.reload()
     },err=>{
       console.log(err)
     })
