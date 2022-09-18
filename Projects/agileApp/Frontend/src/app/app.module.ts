@@ -23,6 +23,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TaskformComponent } from './taskform/taskform.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule,
     MatSidenavModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

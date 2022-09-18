@@ -1,3 +1,4 @@
+
 .example-spacer {
     flex: 1 1 auto;
   }
@@ -6,3 +7,13 @@ mat-toolbar
   span{
     margin-left: 30px;
   }
+
+.tab-icon{
+  margin-right: 5px;
+}
+
+.tab-nav-bar{
+  font-size: 100px !important;
+}
+
+
