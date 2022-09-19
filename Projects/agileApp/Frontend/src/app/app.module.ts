@@ -27,6 +27,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { HomeComponent } from './home/home.component';
 import { SprintComponent } from './sprint/sprint.component';
 import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -60,7 +61,8 @@ import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.componen
     FormsModule,
     MatSidenavModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

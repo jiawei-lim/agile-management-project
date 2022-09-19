@@ -1,1 +1,16 @@
-<p>sprint-backlog works!</p>
+<div>
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+            TEST_SPRINT
+            </mat-panel-title>
+            <mat-panel-description>
+            SPRINT_DESC
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-sprint [sprint_id]="3"></app-sprint>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
