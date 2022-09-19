@@ -10,5 +10,6 @@ export interface task {
     assignee:string,
     story_point:number,
     create_date:string,
-    due_date:string
+    due_date:string,
+    sprint_id:number
 }

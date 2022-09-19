@@ -18,8 +18,11 @@ export class DbService {
 
   constructor(private http: HttpClient) {}
   
-  getTasks():Observable<task[]>{
-    return this.http.get<task[]>(this.url+"/tasks/",{responseType:"json"})
+  getTasks(sprint_id?:any):Observable<task[]>{
+    if(!sprint_id){
+      sprint_id = "";
+    }
+    return this.http.get<task[]>(this.url+"/tasks/"+sprint_id,{responseType:"json"})
   }
 
   insertTask(data:task):Observable<any>{
