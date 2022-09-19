@@ -32,7 +32,13 @@
        
         <mat-form-field appearance="outline">
             <mat-label>Tag</mat-label>
-            <input matInput placeholder="enter a tag"  name="tag" formControlName="tag">
+            <mat-select name="tag"  formControlName="tag"> 
+                <mat-option [value]="'Story'"> Story</mat-option>
+                <mat-option [value]="'Task'">Task</mat-option>
+                <mat-option [value]="'UI/UX'">UI/UX</mat-option>
+                <mat-option [value]="'Maintanence'">Maintanence</mat-option>
+                <mat-option [value]="'Bug'">Bug</mat-option>
+            </mat-select>
         </mat-form-field>
         
 
