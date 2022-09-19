@@ -13,3 +13,11 @@ export interface task {
     due_date:string,
     sprint_id:number
 }
+
+
+export interface sprint {
+    sprint_id:number,
+    sprint_name:string,
+    create_date:string,
+    end_date:string
+}
