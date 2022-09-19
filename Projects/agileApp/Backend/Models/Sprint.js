@@ -3,7 +3,7 @@ const db = require('../db');
 
 //Represent Database schema to Sequelize
 const Sprint = db.define('sprint',{
-    task_id:{
+    sprint_id:{
         type:Sequelize.INTEGER,
         primaryKey:true
     },
