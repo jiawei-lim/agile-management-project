@@ -24,6 +24,11 @@ import { TaskformComponent } from './taskform/taskform.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
+import { HomeComponent } from './home/home.component';
+import { SprintComponent } from './sprint/sprint.component';
+import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +37,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     TaskComponent,
     TasklistComponent,
     TaskdetailComponent,
-    TaskformComponent
+    TaskformComponent,
+    HomeComponent,
+    SprintComponent,
+    SprintBacklogComponent
   ],
   imports: [
     HttpClientModule,

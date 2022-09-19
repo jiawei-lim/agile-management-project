@@ -1,26 +1,24 @@
-<mat-tab-group mat-align-tabs="center" animationDuration="1000ms" dynamicHeight>
-    <mat-tab>
-        <ng-template mat-tab-label class="tab-nav-bar">
-            <mat-icon class="tab-icon">home</mat-icon>
-            Home
-          </ng-template>
-        <h1> Welcome to Agile Management Tool</h1>
-    </mat-tab>
-    <mat-tab layout-fill>
-        <ng-template mat-tab-label class="tab-nav-bar">
-            <mat-icon class="tab-icon">view_column</mat-icon>
-            Product Backlog
-          </ng-template>
-        <app-backlog></app-backlog>
-    </mat-tab>
-    <mat-tab>
-        <ng-template mat-tab-label class="tab-nav-bar">
-            <mat-icon class="tab-icon">view_column</mat-icon>
-            Sprint Backlog
-          </ng-template>
-   
-            <h1 >Sprint Board Goes here!</h1>
-            <app-backlog></app-backlog>
-    </mat-tab>
-  </mat-tab-group>
+<mat-toolbar>
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Agile Management Tool</span>
+</mat-toolbar>
 
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side" class="drawer-body">
+    <mat-nav-list>
+      <a routerLink="" routerLinkActive="active">
+        <mat-list-item>
+          <span>Home</span>
+        </mat-list-item>
+      </a>
+      <a routerLink="/backlog" routerLinkActive="active">
+        <mat-list-item>
+          <span>Product Backlog</span>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
