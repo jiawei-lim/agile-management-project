@@ -4,6 +4,7 @@ import { task } from '../types';
 import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { TaskListServicesService } from '../services/task-list-services.service';
+import { TimelogComponent } from '../timelog/timelog.component';
 
 @Component({
   selector: 'app-taskdetail',
@@ -15,6 +16,7 @@ export class TaskdetailComponent implements OnInit {
   @Output() submitClicked = new EventEmitter<task>();
 
   DialogRef!: MatDialogRef<TaskformComponent>;
+  DialogRef2!:MatDialogRef<TimelogComponent>;
   
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: task,
@@ -53,5 +55,8 @@ export class TaskdetailComponent implements OnInit {
       console.log(err)
     })
   }
-
+  
+  addTime():void{
+    this.DialogRef2=this.dialog.open(TimelogComponent)
+  }
 }
