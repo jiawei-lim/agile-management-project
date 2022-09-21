@@ -1,5 +1,10 @@
+<a class="animated-button"
+    data-back="ADD SPRINT"
+    data-front="+"
+    style="float: right">
+</a>
 <div class="sprint-wrapper" *ngFor="let sprint of sprintList">
-    <mat-accordion >
+    <mat-accordion>
         <!-- <mat-expansion-panel (opened)="panelOpenState = true"
                             (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -13,16 +18,16 @@
         <app-sprint [sprint_id]="3"></app-sprint>
         </mat-expansion-panel> -->
 
-         <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-            {{sprint.sprint_name}}
-            </mat-panel-title>
-            <mat-panel-description>
-            
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-sprint [sprint_id]="sprint.sprint_id"></app-sprint>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{sprint.sprint_name}}
+                </mat-panel-title>
+                <mat-panel-description>
+
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-sprint [sprint_id]="sprint.sprint_id"></app-sprint>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
