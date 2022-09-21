@@ -49,7 +49,10 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Due Date</mat-label>
-            <input matInput placeholder="Due Date"  name="due_date" formControlName="due_date">
+            <input matInput [matDatepicker]="picker" placeholder="yyyy-mm-dd" name="due_date" formControlName="due_date">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
     <button mat-raised-button type="submit" color="primary">{{buttonName}}</button>

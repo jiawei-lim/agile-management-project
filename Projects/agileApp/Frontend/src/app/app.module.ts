@@ -23,6 +23,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TaskformComponent } from './taskform/taskform.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule,
     MatSidenavModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit,Output,Inject,EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { task } from '../types';
+import { DatePipe } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -45,6 +46,7 @@ export class TaskformComponent implements OnInit {
         this.taskDataForm.controls['name'].setValue(this.data.name);
         this.taskDataForm.controls['description'].setValue(this.data.description);
         this.taskDataForm.controls['due_date'].setValue(this.data.due_date);
+
         this.taskDataForm.controls['assignee'].setValue(this.data.assignee);
         this.taskDataForm.controls['priority'].setValue(this.data.priority);
         this.taskDataForm.controls['status'].setValue(this.data.status);
@@ -62,6 +64,9 @@ export class TaskformComponent implements OnInit {
     if(this.buttonName==="Create"){
       const date = new Date();
       const today = date.toDateString();
+
+      this.taskDataForm.controls['due_date'].setValue(new DatePipe('en').transform(this.taskDataForm.controls['due_date'].getRawValue(), 'yyyy-MM-dd'));
+
       // taskData.create_date = today;
       // this.submitClicked.emit(taskData);
       this.taskDataForm.controls['created_date'].setValue(today)
@@ -70,6 +75,7 @@ export class TaskformComponent implements OnInit {
     }
     else{
       this.taskDataForm.controls['task_id'].setValue(this.data.task_id)
+      this.taskDataForm.controls['due_date'].setValue(new DatePipe('en').transform(this.taskDataForm.controls['due_date'].getRawValue(), 'yyyy-MM-dd'));
       this.updateClicked.emit(this.taskDataForm.value);
       this.dialogRef.close()
     }
