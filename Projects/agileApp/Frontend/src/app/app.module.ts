@@ -23,6 +23,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TaskformComponent } from './taskform/taskform.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
+import { HomeComponent } from './home/home.component';
+import { SprintComponent } from './sprint/sprint.component';
+import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
+
 
 @NgModule({
   declarations: [
@@ -31,7 +38,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     TaskComponent,
     TasklistComponent,
     TaskdetailComponent,
-    TaskformComponent
+    TaskformComponent,
+    HomeComponent,
+    SprintComponent,
+    SprintBacklogComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,7 +60,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule,
     MatSidenavModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

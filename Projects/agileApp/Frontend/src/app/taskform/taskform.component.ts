@@ -35,6 +35,7 @@ export class TaskformComponent implements OnInit {
         story_point:[''],
         due_date:[''],
         created_date:[''],
+        sprint_id:[null]
       });
 
 
@@ -50,6 +51,7 @@ export class TaskformComponent implements OnInit {
         this.taskDataForm.controls['status'].setValue(this.data.status);
         this.taskDataForm.controls['story_point'].setValue(this.data.story_point);
         this.taskDataForm.controls['tag'].setValue(this.data.tag);
+        this.taskDataForm.controls['sprint_id'].setValue(this.data.sprint_id);
       }
 
     }
