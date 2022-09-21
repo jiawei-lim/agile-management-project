@@ -35,7 +35,7 @@ export class TaskformComponent implements OnInit {
         story_point:[''],
         due_date:[''],
         created_date:[''],
-        sprint_id:['']
+        sprint_id:[null]
       });
 
 

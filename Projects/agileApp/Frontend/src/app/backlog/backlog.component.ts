@@ -40,6 +40,7 @@ DialogRef!: MatDialogRef<TaskformComponent>;
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
 
         this.db.insertTask(result).subscribe(res=>{
+          console.log(result)
           this.db.getTasks().subscribe(res=>{
             this.taskLists = res
           })
