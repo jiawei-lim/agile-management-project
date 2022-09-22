@@ -3,3 +3,18 @@
     grid-template-columns: auto auto auto auto;
     padding: 10px;
   }
+
+.text_button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  line-height: 18px;
+  height: auto;
+  width: 100px;
+
+}
+
+.text_button:hover {
+  background-color:#4460ab;
+  transition: 0.7s;
+}
