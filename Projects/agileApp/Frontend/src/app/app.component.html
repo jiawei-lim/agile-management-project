@@ -1,7 +1,32 @@
-<mat-toolbar>
-    <span class="example-spacer"></span>
-    <span>Home</span>
-    <span>Product Backlog</span>
-    <span class="example-spacer"></span>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>&nbsp; Agile Management Tool</span>
 </mat-toolbar>
-<app-backlog></app-backlog>
+
+<mat-drawer-container autosize >
+  <mat-drawer #drawer mode="side" class="drawer-body">
+    <mat-nav-list>
+      <a routerLink="" routerLinkActive="active">
+        <mat-list-item>
+          <mat-icon>home</mat-icon>
+          <span>&nbsp; Home</span>
+        </mat-list-item>
+      </a>
+      <a routerLink="/backlog" routerLinkActive="active">
+        <mat-list-item>
+          <mat-icon>view_week</mat-icon>
+          <span>&nbsp; Product Backlog</span>
+        </mat-list-item>
+      </a>
+      <a routerLink="/sprint" routerLinkActive="active">
+        <mat-list-item>
+          <mat-icon>view_agenda</mat-icon>
+          <span>&nbsp; Sprint Backlog</span>
+        </mat-list-item>
+      </a>
+    </mat-nav-list>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
