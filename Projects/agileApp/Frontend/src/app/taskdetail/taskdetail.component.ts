@@ -26,6 +26,7 @@ export class TaskdetailComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data)
+    console.log(this.data.total_time)
   }
 
   onEdit(){
@@ -57,6 +58,33 @@ export class TaskdetailComponent implements OnInit {
   }
   
   addTime():void{
-    this.DialogRef2=this.dialog.open(TimelogComponent)
+    this.DialogRef2 = this.dialog.open(TimelogComponent,{
+      data:this.data
+    })
+    this.DialogRef2.componentInstance.submitClicked.subscribe(result=>{
+      this.db.updateTask(result).subscribe(res=>{
+        console.log("taskdetail:",result)
+        this.DialogRef2.close()
+        this.dialogRef.close()
+        this.notification.sendNotification(true)
+      },err=>console.log(err))
+    
+      
+    })
+    
+
+  //   this.DialogRef2.componentInstance.submitClicked.subscribe(result => {
+
+  //     this.db.updateTask(result).subscribe(res=>{
+  //       console.log(result)
+  //       this.db.getTasks().subscribe(res=>{
+  //         this.taskLists = res
+  //       })
+  //     },err=>{
+  //     })
+      
+
+  //     this.dialog.closeAll();
+  // });
   }
 }

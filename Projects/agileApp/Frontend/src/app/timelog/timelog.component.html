@@ -1,13 +1,16 @@
-<div class="timedialog">
-    <h1>Add time to task</h1>
+<form [formGroup]="timeDataForm"(ngSubmit)="logTime()">   
+    <div class="timedialog" >
+        <h1>Add time to task</h1>
+        
+        <mat-form-field class="hour">
+            <input type="number" min="0" max ="24" matInput placeholder="Hour" formControlName="hour">
+        </mat-form-field>
+
+        <mat-form-field class ="minutes">
+            <input type="number" min="0" max="59" matInput placeholder="minutes" formControlName="minutes">
+        </mat-form-field>
+    </div>
     
-    <mat-form-field class="hour">
-        <input matInput placeholder="Hour">
-    </mat-form-field>
-
-    <mat-form-field class ="minutes">
-        <input matInput placeholder="minutes">
-    </mat-form-field>
-
     <button mat-raised-button type="submit" color="primary" style="float:right">Add</button>
-</div>
+   
+</form> 

@@ -27,7 +27,8 @@ const addTask = (req,res) => {
         assignee:msg.assignee,
         story_point:msg.story_point,
         due_date:msg.due_date,
-        sprint_id:msg.sprint_id
+        sprint_id:msg.sprint_id,
+        total_time:msg.total_timex
     }).then((suc)=>{
       
         res.json("Success!")
@@ -57,7 +58,8 @@ const updateTask = (req,res) => {
         assignee:msg.assignee,
         story_point:msg.story_point,
         due_date:msg.due_date,
-        sprint_id:msg.sprint_id
+        sprint_id:msg.sprint_id,
+        total_time:msg.total_time
     },{
         where:{task_id:msg.task_id}
     }).then((suc)=>{
