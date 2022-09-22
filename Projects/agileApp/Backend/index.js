@@ -4,14 +4,12 @@ const app = express(); // Instantiate Express
 const cors = require("cors"); //For browsers, so doesnt show error
 
 const taskRoute = require('./Route/Task') //Router that defines API calls
-const sprintRoute = require('./Route/Sprint')
 const db = require('./db') //Calling the DB object 
 
 //Telling the app to use the libraries
 app.use(cors());
 app.use(bodyParser.json())
 app.use('/tasks',taskRoute)
-app.use('/sprints',sprintRoute)
 
 //Starts the server
 app.listen(3005,()=>{

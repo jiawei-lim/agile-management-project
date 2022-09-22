@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { task,priority } from '../types';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { TaskformComponent } from '../taskform/taskform.component';
@@ -29,6 +29,8 @@ DialogRef!: MatDialogRef<TaskformComponent>;
     this.notification.notificationSubject.pipe(filter((s)=>s==true)).subscribe((_)=>{
       this.db.getTasks().subscribe(res=>{this.taskLists=res})
     })
+      
+      
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
@@ -40,7 +42,6 @@ DialogRef!: MatDialogRef<TaskformComponent>;
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
 
         this.db.insertTask(result).subscribe(res=>{
-          console.log(result)
           this.db.getTasks().subscribe(res=>{
             this.taskLists = res
           })
