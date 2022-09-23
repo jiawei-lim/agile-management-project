@@ -23,6 +23,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TaskformComponent } from './taskform/taskform.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HomeComponent } from './home/home.component';
 import { SprintComponent } from './sprint/sprint.component';
@@ -63,6 +65,8 @@ import { TimelogComponent } from './timelog/timelog.component';
     FormsModule,
     MatSidenavModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatTabsModule,
     MatExpansionModule
   ],
