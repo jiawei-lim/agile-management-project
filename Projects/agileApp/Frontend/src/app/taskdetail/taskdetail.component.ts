@@ -63,7 +63,7 @@ export class TaskdetailComponent implements OnInit {
     })
     this.DialogRef2.componentInstance.submitClicked.subscribe(result=>{
       this.db.updateTask(result).subscribe(res=>{
-        console.log("taskdetail:",result)
+        // console.log("taskdetail:",result)
         this.DialogRef2.close()
         this.dialogRef.close()
         this.notification.sendNotification(true)

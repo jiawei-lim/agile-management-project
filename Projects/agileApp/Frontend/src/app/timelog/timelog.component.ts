@@ -25,23 +25,28 @@ export class TimelogComponent implements OnInit {
   }
 
   logTime():void{
-    var h;
-    var m;
+    var index = this.data.total_time.indexOf(":")
+    var h = this.data.total_time.substring(0,index)
+    var m = this.data.total_time.substring(index+1,5)
 
-    console.log("timelog:",this.timeDataForm.value)
-    console.log(String(this.timeDataForm.controls['hour'].value));
-    if(this.timeDataForm.controls['hour'].value<10){
-      h = '0' + String(this.timeDataForm.controls['hour'].value);
+    // console.log(h,m)
+    // console.log("timelog:",this.timeDataForm.value)
+    // console.log(Number(h)+(this.timeDataForm.controls['hour'].value))
+    // console.log(this.data.total_time)
+    
+    
+    if((Number(h)+this.timeDataForm.controls['hour'].value)<10){
+      h = '0' + String(Number(h)+this.timeDataForm.controls['hour'].value);
     }
     else{
-      h = String(this.timeDataForm.controls['hour'].value);
+      h = String(Number(h)+this.timeDataForm.controls['hour'].value);
     }
 
-    if(this.timeDataForm.controls['minutes'].value<10){
-      m = '0' +String(this.timeDataForm.controls['minutes'].value);
+    if(Number(m)+this.timeDataForm.controls['minutes'].value<10){
+      m = '0' +String(Number(m)+this.timeDataForm.controls['minutes'].value);
     }
     else{
-      m = String(this.timeDataForm.controls['minutes'].value);
+      m = String(Number(m)+this.timeDataForm.controls['minutes'].value);
     }
     this.data.total_time = h+":"+m
 
