@@ -23,7 +23,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TaskformComponent } from './taskform/taskform.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +50,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     FormsModule,
     MatSidenavModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
