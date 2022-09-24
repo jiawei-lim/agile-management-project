@@ -25,8 +25,25 @@ export class TimelogComponent implements OnInit {
   }
 
   logTime():void{
+    var h;
+    var m;
+
     console.log("timelog:",this.timeDataForm.value)
-    this.data.total_time = this.timeDataForm.value
+    console.log(String(this.timeDataForm.controls['hour'].value));
+    if(this.timeDataForm.controls['hour'].value<10){
+      h = '0' + String(this.timeDataForm.controls['hour'].value);
+    }
+    else{
+      h = String(this.timeDataForm.controls['hour'].value);
+    }
+
+    if(this.timeDataForm.controls['minutes'].value<10){
+      m = '0' +String(this.timeDataForm.controls['minutes'].value);
+    }
+    else{
+      m = String(this.timeDataForm.controls['minutes'].value);
+    }
+    this.data.total_time = h+":"+m
 
     this.submitClicked.emit(this.data)
   }

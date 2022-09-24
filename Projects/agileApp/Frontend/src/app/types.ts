@@ -14,7 +14,7 @@ export interface task {
     create_date:string,
     due_date:string,
     sprint_id:number,
-    total_time:Time
+    total_time:string
 }
 
 
