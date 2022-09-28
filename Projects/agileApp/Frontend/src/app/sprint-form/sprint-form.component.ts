@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Inject, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { sprint } from '../types';
 import { DatePipe } from '@angular/common';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sprint-form',
@@ -17,14 +17,16 @@ export class SprintFormComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<SprintFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: sprint,
+    @Inject(MAT_DIALOG_DATA)
+    public data: sprint,
     private fb: FormBuilder
   ) {
     this.sprintDataForm = this.fb.group({
       sprint_id: [null],
       sprint_name: [''],
       created_date: [''],
-      end_date: ['']
+      start_date: [''],
+      end_date: [''],
     });
   }
 
@@ -35,12 +37,24 @@ export class SprintFormComponent implements OnInit {
     // creation date
     const date = new Date();
     const today = date.toDateString();
-    this.sprintDataForm.controls['create_date'].setValue(today);
+    this.sprintDataForm.controls['created_date'].setValue(today);
 
     // start and end dates
-    this.sprintDataForm.controls['start'].setValue(new DatePipe('en').transform(this.sprintDataForm.controls['start'].getRawValue(), 'yyyy-MM-dd'));
-    this.sprintDataForm.controls['end'].setValue(new DatePipe('en').transform(this.sprintDataForm.controls['end'].getRawVlue(), 'yyyy-MM-dd'));
+    this.sprintDataForm.controls['start_date'].setValue(
+      new DatePipe('en').transform(
+        this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
+      )
+    );
+    this.sprintDataForm.controls['end_date'].setValue(
+      new DatePipe('en').transform(
+        this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
+      )
+    );
 
+    // save to DB
+    this.submitClicked.emit(this.sprintDataForm.value);
+
+    // close dialog
     this.dialogRef.close();
   }
 

@@ -36,8 +36,6 @@ export class SprintBacklogComponent implements OnInit {
         exitAnimationDuration,
       }
     );
-
-    // to implement submit
   }
 
 }
