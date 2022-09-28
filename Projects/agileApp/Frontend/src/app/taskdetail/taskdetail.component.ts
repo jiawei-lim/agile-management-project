@@ -5,6 +5,7 @@ import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { TaskListServicesService } from '../services/task-list-services.service';
 import { TimelogComponent } from '../timelog/timelog.component';
+import { isElementAccessExpression } from 'typescript';
 
 @Component({
   selector: 'app-taskdetail',
@@ -27,6 +28,15 @@ export class TaskdetailComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data)
     console.log(this.data.total_time)
+  }
+
+  isSprint():boolean{
+    if (this.data.sprint_id !== null){
+      return true
+    }
+    else{
+      return false
+    }
   }
 
   onEdit(){

@@ -1,12 +1,14 @@
-<div style="float: right;">
-    <button mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
-    <button mat-icon-button (click)="onDelete()"><mat-icon>delete</mat-icon></button>
-    <button mat-icon-button (click)="addTime()"><mat-icon>timer</mat-icon></button>
-</div>
+ <div style="float: right;">
+        <button mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button (click)="onDelete()"><mat-icon>delete</mat-icon></button>
+        <button *ngIf="isSprint()" mat-icon-button (click)="addTime()"><mat-icon>timer</mat-icon></button>
+ </div>
 <br>
 
 <div class="detail-grid">
     <div *ngFor="let item of data | keyvalue" class="task-detail">
+       
+
             <h2>{{item.key}}</h2>
             <p>{{item.value}}</p>
     </div>
