@@ -47,6 +47,13 @@ a {
 }
 
 
+.h-button:hover {
+    background: black;
+    color: white;
+    transition: all 0.2s linear
+}
+
+
 .h-button:hover::before,
 .h-button:focus::before {
     opacity: 0;
