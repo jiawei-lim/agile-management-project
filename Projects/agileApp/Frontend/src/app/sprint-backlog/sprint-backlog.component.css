@@ -1,8 +1,66 @@
-.sprint-wrapper{
+.sprint-wrapper {
     margin: 20px;
 }
 
-.animated-button{
+a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    color: black;
+    text-decoration: none;
+}
+
+.centered {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.h-button {
+    border: 2px solid black;
+    padding: 15px;
+    height: 20px;
+    width: 120px;
+    text-align: center;
+}
+
+.h-button span {
+    display: inline-block;
+    min-width: 0.30em;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    transition: 0.25s cubic-bezier(0.5, -1, 0.5, 2);
+    opacity: 0;
+    transform: translate(0, -20px);
+}
+
+.h-button::before {
+    content: attr(data-before);
+    font-size: 30px;
+    font-weight: 400;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    transition: 0.25s cubic-bezier(0.5, -1, 0.5, 2);
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+    opacity: 1;
+    transform: translate(0, 0px);
+}
+
+
+.h-button:hover::before,
+.h-button:focus::before {
+    opacity: 0;
+    transform: translate(0, 20px);
+}
+
+.h-button:hover span,
+.h-button:focus span {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+
+/* .animated-button{
     opacity: 1;
     outline: 0;
     line-height: 40px;
@@ -12,7 +70,6 @@
     display: inline-block;
     margin: 30px;
     width: 120px;
-    border-radius: 6px;
 }
 
 .animated-button:hover::after{
@@ -22,7 +79,7 @@
 
 .animated-button:hover::before{
     opacity: 0;
-    transform: translateY(100%) rotateX(90deg);
+    transform: translateY(50%) rotateX(90deg);
 }
 
 .animated-button::after{
@@ -34,10 +91,9 @@
     transition: 0.5s;
     position: absolute;
     content: attr(data-back);
-    transform: translateY(-100%) rotateX(90deg);
-    background: #3f51b5;
-    color: #FFF;
-    border-radius: 6px;
+    transform: translateY(-50%) rotateX(90deg);
+    background: rgb(100, 100, 100);
+    color: white;
 }
 
 .animated-button::before{
@@ -50,9 +106,8 @@
     transition: 0.5s;
     position: relative;
     content: attr(data-front);
-    transform: translateY(0) rotateX(0);
-    background: #323237;
-    color: #FFF;
-    border-radius: 6px;
+    transform: translateZ(0) rotateX(0);
+    background: #cecece;
+    color: black;
     font-size: 0.7cm;
-}
+} */
