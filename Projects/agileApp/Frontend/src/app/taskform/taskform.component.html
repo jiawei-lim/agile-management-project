@@ -14,7 +14,7 @@
         <mat-form-field appearance="outline">
             <mat-label>Status</mat-label>
             <mat-select name="status"  formControlName="status">
-            <mat-option [value]="'To do'"> To do</mat-option>
+            <mat-option [value]="'To Do'"> To Do</mat-option>
             <mat-option [value]="'In Progress'">In Progress</mat-option>
             <mat-option [value]="'To Review'"> To Review</mat-option>
             <mat-option [value]="'Completed'"> Completed</mat-option>
@@ -55,7 +55,10 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Due Date</mat-label>
-            <input matInput placeholder="Due Date"  name="due_date" formControlName="due_date">
+            <input matInput [matDatepicker]="picker" placeholder="yyyy-mm-dd" name="due_date" formControlName="due_date">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
