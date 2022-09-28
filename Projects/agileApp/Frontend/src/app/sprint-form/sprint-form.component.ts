@@ -11,15 +11,17 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SprintFormComponent implements OnInit {
 
+  @Output() submitClicked = new EventEmitter<sprint>();
+
   sprintDataForm: any;
 
   constructor(
     public dialogRef: MatDialogRef<SprintFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: sprint,
     private fb: FormBuilder
-  ) { 
+  ) {
     this.sprintDataForm = this.fb.group({
-      sprint_id:[null],
+      sprint_id: [null],
       sprint_name: [''],
       created_date: [''],
       end_date: ['']
@@ -27,6 +29,19 @@ export class SprintFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  processData() {
+    // creation date
+    const date = new Date();
+    const today = date.toDateString();
+    this.sprintDataForm.controls['create_date'].setValue(today);
+
+    // start and end dates
+    this.sprintDataForm.controls['start'].setValue(new DatePipe('en').transform(this.sprintDataForm.controls['start'].getRawValue(), 'yyyy-MM-dd'));
+    this.sprintDataForm.controls['end'].setValue(new DatePipe('en').transform(this.sprintDataForm.controls['end'].getRawVlue(), 'yyyy-MM-dd'));
+
+    this.dialogRef.close();
   }
 
 }

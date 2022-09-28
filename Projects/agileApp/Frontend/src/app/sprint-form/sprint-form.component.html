@@ -1,4 +1,4 @@
-<p>sprint-form works!</p>
+<h1>Create new sprint</h1>
 <form>
     <div class="grid-form">
         <mat-form-field appearance="outline">
@@ -18,7 +18,11 @@
 
         <mat-form-field appearance="outline">
             <mat-label>End</mat-label>
-            <input matInput type="date" placeholder="Enter the ending date of the sprint" formControlName="end">
+            <input matInput [matDatepicker]="picker" placeholder="yyyy-mm-dd" formControlName="end">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
     </div>
+    <button mat-raised-button type="submit" color="primary">Submit</button>
 </form>

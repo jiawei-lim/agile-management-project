@@ -30,6 +30,7 @@ a {
     transition: 0.25s cubic-bezier(0.5, -1, 0.5, 2);
     opacity: 0;
     transform: translate(0, -20px);
+    color: white;
 }
 
 .h-button::before {
@@ -49,8 +50,7 @@ a {
 
 .h-button:hover {
     background: black;
-    color: white;
-    transition: all 0.2s linear
+    transition: background 0.2s linear
 }
 
 
@@ -65,56 +65,3 @@ a {
     opacity: 1;
     transform: translate(0, 0);
 }
-
-
-/* .animated-button{
-    opacity: 1;
-    outline: 0;
-    line-height: 40px;
-    position: relative;
-    text-align: center;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin: 30px;
-    width: 120px;
-}
-
-.animated-button:hover::after{
-    opacity: 1;
-    transform: translateY(0) rotateX(0);
-}
-
-.animated-button:hover::before{
-    opacity: 0;
-    transform: translateY(50%) rotateX(90deg);
-}
-
-.animated-button::after{
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 100%;
-    display: block;
-    transition: 0.5s;
-    position: absolute;
-    content: attr(data-back);
-    transform: translateY(-50%) rotateX(90deg);
-    background: rgb(100, 100, 100);
-    color: white;
-}
-
-.animated-button::before{
-    top: 0;
-    left: 0;
-    opacity: 1;
-    display: block;
-    padding: 0 30px;
-    line-height: 40px;
-    transition: 0.5s;
-    position: relative;
-    content: attr(data-front);
-    transform: translateZ(0) rotateX(0);
-    background: #cecece;
-    color: black;
-    font-size: 0.7cm;
-} */
