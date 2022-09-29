@@ -15,7 +15,6 @@ const addSprint = (req, res) => {
     console.log(msg);
     Sprint.create({
         sprint_name: msg.sprint_name,
-        created_date: msg.created_date,
         start_date: msg.start_date,
         end_date: msg.end_date,
     }).then((suc) => {
@@ -27,5 +26,6 @@ const addSprint = (req, res) => {
 }
 
 module.exports = {
-    getSprints
+    getSprints,
+    addSprint
 }

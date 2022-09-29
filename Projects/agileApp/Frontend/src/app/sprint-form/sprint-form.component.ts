@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, Inject, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { sprint } from '../types';
 import { DatePipe } from '@angular/common';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sprint-form',
@@ -24,7 +24,6 @@ export class SprintFormComponent implements OnInit {
     this.sprintDataForm = this.fb.group({
       sprint_id: [null],
       sprint_name: [''],
-      created_date: [''],
       start_date: [''],
       end_date: [''],
     });
@@ -34,11 +33,6 @@ export class SprintFormComponent implements OnInit {
   }
 
   processData() {
-    // creation date
-    const date = new Date();
-    const today = date.toDateString();
-    this.sprintDataForm.controls['created_date'].setValue(today);
-
     // start and end dates
     this.sprintDataForm.controls['start_date'].setValue(
       new DatePipe('en').transform(

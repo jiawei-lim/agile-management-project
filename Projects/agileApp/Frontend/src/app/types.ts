@@ -18,7 +18,6 @@ export interface task {
 export interface sprint {
     sprint_id: number,
     sprint_name: string,
-    created_date: string,
     start_date: string,
     end_date: string
 }
