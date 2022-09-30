@@ -30,6 +30,7 @@ import { HomeComponent } from './home/home.component';
 import { SprintComponent } from './sprint/sprint.component';
 import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { TimelogComponent } from './timelog/timelog.component';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
 
 
@@ -45,6 +46,7 @@ import { SprintFormComponent } from './sprint-form/sprint-form.component';
     HomeComponent,
     SprintComponent,
     SprintBacklogComponent,
+    TimelogComponent,
     SprintFormComponent
   ],
   imports: [

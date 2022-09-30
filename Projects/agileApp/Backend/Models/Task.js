@@ -31,11 +31,15 @@ const Task = db.define('task',{
     due_date:{
         type:Sequelize.DATE
     },
+    total_time:{
+        type:Sequelize.TIME
+    },
     sprint_id:{
         type:Sequelize.INTEGER,
         references: 'sprints',
         referencesKey: 'sprint_id' 
     }
+    
 },{
     id:false,
     createdAt:false,

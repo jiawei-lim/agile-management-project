@@ -1,0 +1,12 @@
+div.timedialog{
+    width: 250px;
+}
+
+mat-form-field.hour{
+    width:100px;
+    margin:5px;
+}
+mat-form-field.minutes{
+    width:125px;
+    margin:5px;
+}

@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export type priority = "High" | "Medium" | "Low";
 
 export interface task {
@@ -11,7 +13,8 @@ export interface task {
     story_point: number,
     create_date: string,
     due_date: string,
-    sprint_id: number
+    sprint_id: number,
+    total_time:string
 }
 
 
