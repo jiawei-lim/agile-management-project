@@ -82,7 +82,7 @@ export class TimelogComponent implements OnInit {
     }
     
     // set the time spent on the task 
-    this.data.total_time = h+":"+m
+    this.data.total_time = h+":"+m+":00"
 
     // emit the task data back to task detail component
     this.submitClicked.emit(this.data)
