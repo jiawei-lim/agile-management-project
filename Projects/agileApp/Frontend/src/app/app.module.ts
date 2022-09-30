@@ -35,6 +35,7 @@ import { SprintFormComponent } from './sprint-form/sprint-form.component';
 
 
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { SprintFormComponent } from './sprint-form/sprint-form.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

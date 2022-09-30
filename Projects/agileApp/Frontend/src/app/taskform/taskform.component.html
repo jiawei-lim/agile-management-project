@@ -30,7 +30,7 @@
             </mat-select>
         </mat-form-field>
        
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
             <mat-label>Tag</mat-label>
             <mat-select name="tag"  formControlName="tag"> 
                 <mat-option [value]="'Story'"> Story</mat-option>
@@ -39,6 +39,16 @@
                 <mat-option [value]="'Maintanence'">Maintanence</mat-option>
                 <mat-option [value]="'Bug'">Bug</mat-option>
             </mat-select>
+        </mat-form-field> -->
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Tag</mat-label>
+            <input matInput placeholder="enter a tag"  name="tag" formControlName="tag" [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
         </mat-form-field>
         
 

@@ -2,7 +2,8 @@ import { Component, OnInit,Output,Inject,EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { task } from '../types';
 import { DatePipe } from '@angular/common';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-taskform',
@@ -18,6 +19,9 @@ export class TaskformComponent implements OnInit {
   formTitle = "Create new task";
   buttonName = "Create";
   taskDataForm:any;
+  options:string[] = ['Story','Task','Bug','UI/UX','Maintanence']
+  myControl = new FormControl('');
+  filteredOptions!: Observable<String[]>;
 
   constructor(
     public dialogRef: MatDialogRef<TaskformComponent>,
@@ -61,6 +65,8 @@ export class TaskformComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),map(value => this.filter(String(value))));
   }
 
 
@@ -83,5 +89,11 @@ export class TaskformComponent implements OnInit {
       this.updateClicked.emit(this.taskDataForm.value);
       this.dialogRef.close()
     }
+  }
+
+  private filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }
