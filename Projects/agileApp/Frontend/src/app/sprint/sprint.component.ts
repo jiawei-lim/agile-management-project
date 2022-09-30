@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { range } from 'rxjs';
 import { DbService } from '../services/db.service';
 import { task } from '../types';
 
@@ -9,19 +10,33 @@ import { task } from '../types';
 })
 export class SprintComponent implements OnInit {
 
-  @Input() sprint_id:number;
-  sprint_list:task[] = [];
+  @Input() sprint_id!: number;
+  sprint_list: task[] = [];
 
-  constructor(private db:DbService) {
-    
+  constructor(private db: DbService) {
+
   }
 
   ngOnInit(): void {
-    this.db.getTasks(this.sprint_id).subscribe((res)=>{
+    this.db.getTasks(this.sprint_id).subscribe((res) => {
       this.sprint_list = res;
-    },(err)=>{
+    }, (err) => {
       console.log(err)
     })
+  }
+
+  // manually start sprint
+  onStart(): void {
+    this.db.updateSprintStatus({ "sprint_id": this.sprint_id, "sprint_status": "Active" }).subscribe(
+      res => { console.log(res) },
+      err => console.log(err))
+  }
+
+  // manually end sprint
+  onEnd(): void {
+    this.db.updateSprintStatus({ "sprint_id": this.sprint_id, "sprint_status": "Inactive" }).subscribe(
+      res => { console.log(res) },
+      err => { console.log(err) })
   }
 
 }
