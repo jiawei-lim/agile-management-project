@@ -18,7 +18,6 @@ export class TaskformComponent implements OnInit {
   @Output() updateClicked = new EventEmitter<task>();
   
   sprintList!: sprint[];
-  exp_sprintList: any;
   isUpdate = false;
   formTitle = "Create new task";
   buttonName = "Create";
@@ -26,6 +25,7 @@ export class TaskformComponent implements OnInit {
   options:string[] = ['Story','Task','Bug','UI/UX','Maintanence']
   myControl = new FormControl('');
   filteredOptions!: Observable<String[]>;
+  sprintOptions:any = [{"sprint_id":null,"sprint_name":"Unassigned","start_date":"","end_date":"","sprint_status":""}];
 
   constructor(
     public dialogRef: MatDialogRef<TaskformComponent>,
@@ -75,7 +75,7 @@ export class TaskformComponent implements OnInit {
       startWith(''),map(value => this.filter(String(value))));
       this.db.getSprints().subscribe((res) => {
         this.sprintList = res
-        this.exp_sprintList = res.map((x: any) => ({ ...x, expanded: false }));
+        this.sprintOptions = this.sprintOptions.concat(res);
       }, (err) => console.log(err))
   }
 
