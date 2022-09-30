@@ -27,32 +27,16 @@ export class SprintComponent implements OnInit {
 
   // manually start sprint
   onStart(): void {
-    this.db.getSprints().subscribe((res) => {
-      // look for corresponding sprint ID
-      for (let i = 0; i < res.length; i++) {
-        if (res[i].sprint_id == this.sprint_id) {
-          res[i].sprint_status = "active";
-          console.log(res[i])
-          // update in DB
-          this.db.updateSprintStatus(res[i]);
-        }
-      }
-    })
+    this.db.updateSprintStatus({ "sprint_id": this.sprint_id, "sprint_status": "Active" }).subscribe(
+      res => { console.log(res) },
+      err => console.log(err))
   }
 
   // manually end sprint
   onEnd(): void {
-    this.db.getSprints().subscribe((res) => {
-      // look for corresponding sprint ID
-      for (let i = 0; i < res.length; i++) {
-        if (res[i].sprint_id == this.sprint_id) {
-          res[i].sprint_status = "ended";
-          console.log(res[i])
-          // update in DB
-          this.db.updateSprintStatus(res[i]);
-        }
-      }
-    })
+    this.db.updateSprintStatus({ "sprint_id": this.sprint_id, "sprint_status": "Inactive" }).subscribe(
+      res => { console.log(res) },
+      err => { console.log(err) })
   }
 
 }

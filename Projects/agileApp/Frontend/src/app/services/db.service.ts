@@ -45,7 +45,7 @@ export class DbService {
     return this.http.post<sprint[]>(this.url + "/sprints/insert", data, this.httpOptions)
   }
 
-  updateSprintStatus(data: sprint): Observable<sprint[]> {
+  updateSprintStatus(data:any): Observable<sprint[]> {
     return this.http.post<sprint[]>(this.url + "/sprints/update", data, this.httpOptions)
   }
 
