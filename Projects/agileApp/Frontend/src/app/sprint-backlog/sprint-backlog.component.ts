@@ -36,6 +36,13 @@ export class SprintBacklogComponent implements OnInit {
         exitAnimationDuration,
       }
     );
+
+    this.DialogRef.componentInstance.submitClicked.subscribe(res=>{
+      console.log(res)
+      this.db.insertSprints(res).subscribe(res=>{
+        console.log(res)
+      },err=>console.log(err))
+    })
   }
 
 }

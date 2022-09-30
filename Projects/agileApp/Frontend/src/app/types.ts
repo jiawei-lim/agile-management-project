@@ -19,5 +19,6 @@ export interface sprint {
     sprint_id: number,
     sprint_name: string,
     start_date: string,
-    end_date: string
+    end_date: string,
+    sprint_status:string
 }

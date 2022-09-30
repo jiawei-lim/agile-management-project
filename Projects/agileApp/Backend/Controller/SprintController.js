@@ -17,6 +17,7 @@ const addSprint = (req, res) => {
         sprint_name: msg.sprint_name,
         start_date: msg.start_date,
         end_date: msg.end_date,
+        sprint_status: msg.status,
     }).then((suc) => {
         res.json("Success!");
     }).catch((err) => {

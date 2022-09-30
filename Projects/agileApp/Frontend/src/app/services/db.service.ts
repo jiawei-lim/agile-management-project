@@ -40,4 +40,9 @@ export class DbService {
   getSprints():Observable<sprint[]>{
     return this.http.get<sprint[]>(this.url+"/sprints",{responseType:"json"})
   }
+
+  insertSprints(data:sprint):Observable<sprint[]>{
+    return this.http.post<sprint[]>(this.url+"/sprints/insert",data,this.httpOptions)
+  }
+
 }
