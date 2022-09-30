@@ -1,7 +1,10 @@
+<div>
+    <button mat-raised-button color="primary" (click)="onStart()" style="margin-left: 30px">Start</button>
+    <button mat-raised-button color="warn" (click)="onEnd()" style="margin-left: 10px">End</button>
+</div>
 <div class="grid-container">
-    <app-tasklist [listTitle]="'To do'" [taskList]="sprint_list"></app-tasklist>
+    <app-tasklist [listTitle]="'To Do'" [taskList]="sprint_list"></app-tasklist>
     <app-tasklist [listTitle]="'In Progress'" [taskList]="sprint_list"></app-tasklist>
     <app-tasklist [listTitle]="'To Review'" [taskList]="sprint_list"></app-tasklist>
     <app-tasklist [listTitle]="'Completed'" [taskList]="sprint_list"></app-tasklist>
 </div>
-
