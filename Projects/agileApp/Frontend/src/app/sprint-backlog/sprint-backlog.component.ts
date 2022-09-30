@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DbService } from '../services/db.service';
 import { SprintFormComponent } from '../sprint-form/sprint-form.component';
+import { SprintTaskformComponent } from '../sprint-taskform/sprint-taskform.component';
 import { sprint } from '../types';
 
 @Component({
@@ -14,7 +15,7 @@ export class SprintBacklogComponent implements OnInit {
   sprintList!: sprint[];
   exp_sprintList: any;
 
-  DialogRef!: MatDialogRef<SprintFormComponent>;
+  DialogRef!: MatDialogRef<SprintFormComponent> | MatDialogRef<SprintTaskformComponent> ;
 
   constructor(
     public dialog: MatDialog,
@@ -31,6 +32,15 @@ export class SprintBacklogComponent implements OnInit {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.DialogRef = this.dialog.open(
       SprintFormComponent,
+      {
+        enterAnimationDuration,
+        exitAnimationDuration,
+      }
+    );
+  }
+  openDialog2(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.DialogRef = this.dialog.open(
+      SprintTaskformComponent,
       {
         enterAnimationDuration,
         exitAnimationDuration,

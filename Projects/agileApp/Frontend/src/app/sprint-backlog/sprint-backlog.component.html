@@ -4,6 +4,11 @@
     style="top: 50px; right: 10px">
     <span>new sprint</span>
 </a>
+<a class="h-button centered" 
+    data-before="+" (click)="openDialog2('0ms', '0ms')"
+    style="top: 50px; left: 150px">
+    <span>add task</span>
+</a>
 <div class="sprint-wrapper" *ngFor="let sprint of sprintList">
     <mat-accordion>
         <!-- <mat-expansion-panel (opened)="panelOpenState = true"

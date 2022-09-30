@@ -1,0 +1,6 @@
+<mat-card>
+    <div *ngFor="let task of filterByStatus(sprintList)">
+        <app-sprint-taskform-task [sprintTaskItem]="task"></app-sprint-taskform-task>
+    </div>
+</mat-card>
+

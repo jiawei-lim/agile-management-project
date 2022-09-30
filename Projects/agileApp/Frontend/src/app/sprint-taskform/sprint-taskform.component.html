@@ -1,0 +1,5 @@
+<h1>{{formTitle}}</h1>
+<form [formGroup]="sprintTaskDataForm">
+    <app-sprintlist [sprintList]="sprintLists"></app-sprintlist>
+    <button mat-raised-button type="submit" color="primary">{{buttonName}}</button>
+</form>

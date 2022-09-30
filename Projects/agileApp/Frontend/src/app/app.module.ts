@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +30,9 @@ import { SprintComponent } from './sprint/sprint.component';
 import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
+import { SprintTaskformComponent } from './sprint-taskform/sprint-taskform.component';
+import { SprintTaskformTaskComponent } from './sprint-taskform-task/sprint-taskform-task.component';
+import { SprintlistComponent } from './sprintlist/sprintlist.component';
 
 
 
@@ -45,7 +47,10 @@ import { SprintFormComponent } from './sprint-form/sprint-form.component';
     HomeComponent,
     SprintComponent,
     SprintBacklogComponent,
-    SprintFormComponent
+    SprintFormComponent,
+    SprintTaskformComponent,
+    SprintTaskformTaskComponent,
+    SprintlistComponent
   ],
   imports: [
     HttpClientModule,

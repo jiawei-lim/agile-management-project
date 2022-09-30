@@ -5,6 +5,7 @@ import { TaskformComponent } from '../taskform/taskform.component';
 import { DbService } from '../services/db.service';
 import { TaskListServicesService } from '../services/task-list-services.service';
 import {filter} from "rxjs"
+import { SprintTaskformTaskComponent } from '../sprint-taskform-task/sprint-taskform-task.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class BacklogComponent implements OnInit {
 
   
   taskLists:task[] = [];
+  
 
 DialogRef!: MatDialogRef<TaskformComponent>;
 
