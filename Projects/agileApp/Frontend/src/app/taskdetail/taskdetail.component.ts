@@ -29,7 +29,8 @@ export class TaskdetailComponent implements OnInit {
     console.log(this.data)
     console.log(this.data.total_time)
   }
-
+  
+  // check if the task has been added to the sprint
   isSprint():boolean{
     if (this.data.sprint_id !== null){
       return true
@@ -67,14 +68,21 @@ export class TaskdetailComponent implements OnInit {
     })
   }
   
+
   addTime():void{
+    // open the time log dialog
     this.DialogRef2 = this.dialog.open(TimelogComponent,{
       data:this.data
     })
+
+    //once the add/remove task button is added update the task in the db and then close the dialogues and update the display
     this.DialogRef2.componentInstance.submitClicked.subscribe(result=>{
       this.db.updateTask(result).subscribe(res=>{
         // console.log("taskdetail:",result)
+
+        //close the timelog component dialog
         this.DialogRef2.close()
+        //close the task detail dialog
         this.dialogRef.close()
         this.notification.sendNotification(true)
       },err=>console.log(err))
@@ -82,19 +90,5 @@ export class TaskdetailComponent implements OnInit {
       
     })
     
-
-  //   this.DialogRef2.componentInstance.submitClicked.subscribe(result => {
-
-  //     this.db.updateTask(result).subscribe(res=>{
-  //       console.log(result)
-  //       this.db.getTasks().subscribe(res=>{
-  //         this.taskLists = res
-  //       })
-  //     },err=>{
-  //     })
-      
-
-  //     this.dialog.closeAll();
-  // });
   }
 }
