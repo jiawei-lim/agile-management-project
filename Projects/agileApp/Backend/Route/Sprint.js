@@ -5,5 +5,6 @@ const router = express.Router() //Router module by Express
 const controller = require("../Controller/SprintController")
 
 router.get('/',controller.getSprints) // GET request (application requests for data)
+router.post('/insert',controller.addSprint)
 
 module.exports = router

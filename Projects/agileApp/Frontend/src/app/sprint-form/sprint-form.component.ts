@@ -23,10 +23,10 @@ export class SprintFormComponent implements OnInit {
   ) {
     this.sprintDataForm = this.fb.group({
       sprint_id: [null],
-      sprint_name: [''],
-      created_date: [''],
+      sprint_name: [""],
       start_date: [''],
       end_date: [''],
+      sprint_status: [null],
     });
   }
 
@@ -35,9 +35,10 @@ export class SprintFormComponent implements OnInit {
 
   processData() {
     // creation date
-    const date = new Date();
-    const today = date.toDateString();
-    this.sprintDataForm.controls['created_date'].setValue(today);
+    // const date = new Date();
+    // const today = date.toDateString();
+    // this.sprintDataForm.controls['created_date'].setValue(today);
+    
 
     // start and end dates
     this.sprintDataForm.controls['start_date'].setValue(
@@ -50,9 +51,11 @@ export class SprintFormComponent implements OnInit {
         this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
       )
     );
+    
 
     // save to DB
     this.submitClicked.emit(this.sprintDataForm.value);
+   
 
     // close dialog
     this.dialogRef.close();
