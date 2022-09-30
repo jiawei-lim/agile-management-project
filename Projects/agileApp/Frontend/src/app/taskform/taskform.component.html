@@ -73,7 +73,10 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Sprint</mat-label>
-            <input matInput placeholder="Sprint"  name="sprint" formControlName="sprint_id">
+            <mat-select name="sprint"  formControlName="sprint">
+                <mat-option *ngFor="let sprint of sprintList" 
+                value="{{sprint.sprint_id}}">{{sprint.sprint_id}}</mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
     <button mat-raised-button type="submit" color="primary">{{buttonName}}</button>

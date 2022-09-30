@@ -1,9 +1,11 @@
 import { Component, OnInit,Output,Inject,EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { task } from '../types';
+import { DbService } from '../services/db.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
+import { sprint } from '../types';
 
 @Component({
   selector: 'app-taskform',
@@ -15,6 +17,8 @@ export class TaskformComponent implements OnInit {
   @Output() submitClicked = new EventEmitter<task>();
   @Output() updateClicked = new EventEmitter<task>();
   
+  sprintList!: sprint[];
+  exp_sprintList: any;
   isUpdate = false;
   formTitle = "Create new task";
   buttonName = "Create";
@@ -26,7 +30,9 @@ export class TaskformComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<TaskformComponent>,
     @Inject(MAT_DIALOG_DATA) public data: task,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    public dialog: MatDialog,
+    private db: DbService
     ){
       
       this.taskDataForm = this.fb.group({
@@ -67,6 +73,10 @@ export class TaskformComponent implements OnInit {
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),map(value => this.filter(String(value))));
+      this.db.getSprints().subscribe((res) => {
+        this.sprintList = res
+        this.exp_sprintList = res.map((x: any) => ({ ...x, expanded: false }));
+      }, (err) => console.log(err))
   }
 
 
