@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DbService } from '../services/db.service';
+import { SprintFormComponent } from '../sprint-form/sprint-form.component';
 import { sprint } from '../types';
 
 @Component({
@@ -9,16 +11,38 @@ import { sprint } from '../types';
 })
 export class SprintBacklogComponent implements OnInit {
   panelOpenState = false;
-  sprintList:sprint[];
-  exp_sprintList:any;
+  sprintList!: sprint[];
+  exp_sprintList: any;
 
-  constructor(private db:DbService) { }
+  DialogRef!: MatDialogRef<SprintFormComponent>;
+
+  constructor(
+    public dialog: MatDialog,
+    private db: DbService
+  ) { }
 
   ngOnInit(): void {
-    this.db.getSprints().subscribe((res)=>{
+    this.db.getSprints().subscribe((res) => {
       this.sprintList = res
-      this.exp_sprintList = res.map((x:any)=>({...x,expanded:false}));
-    },(err)=>console.log(err))
+      this.exp_sprintList = res.map((x: any) => ({ ...x, expanded: false }));
+    }, (err) => console.log(err))
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.DialogRef = this.dialog.open(
+      SprintFormComponent,
+      {
+        enterAnimationDuration,
+        exitAnimationDuration,
+      }
+    );
+
+    this.DialogRef.componentInstance.submitClicked.subscribe(res=>{
+      console.log(res)
+      this.db.insertSprints(res).subscribe(res=>{
+        console.log(res)
+      },err=>console.log(err))
+    })
   }
 
 }

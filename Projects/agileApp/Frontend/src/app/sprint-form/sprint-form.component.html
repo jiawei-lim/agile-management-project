@@ -1,0 +1,28 @@
+<h1>Create new sprint</h1>
+<form [formGroup]="sprintDataForm" (ngSubmit)="processData()">
+    <div class="grid-form">
+        <mat-form-field appearance="outline">
+            <!-- name of the sprint -->
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter the name of the sprint" formControlName="sprint_name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <!-- start date of the sprint -->
+            <mat-label>Start</mat-label>
+            <input matInput [matDatepicker]="picker1" placeholder="yyyy-mm-dd" formControlName="start_date">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>End</mat-label>
+            <input matInput [matDatepicker]="picker2" placeholder="yyyy-mm-dd" formControlName="end_date">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" color="primary">Submit</button>
+</form>

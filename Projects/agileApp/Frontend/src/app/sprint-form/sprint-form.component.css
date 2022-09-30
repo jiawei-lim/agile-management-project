@@ -1,0 +1,9 @@
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+div
+    mat-form-field {
+        margin: 15px;
+    }

@@ -10,11 +10,14 @@ const Sprint = db.define('sprint',{
     sprint_name:{
         type:Sequelize.STRING
     },
-    create_date:{
+    start_date:{
         type:Sequelize.DATE
     },
     end_date:{
         type:Sequelize.DATE
+    },
+    sprint_status:{
+        type:Sequelize.STRING
     }
 },{
     id:false,
