@@ -55,7 +55,7 @@ export class SprintFormComponent implements OnInit {
 
     // save to DB
     this.submitClicked.emit(this.sprintDataForm.value);
-   
+    
 
     // close dialog
     this.dialogRef.close();
