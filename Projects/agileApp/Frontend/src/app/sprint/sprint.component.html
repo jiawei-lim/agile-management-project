@@ -1,7 +1,9 @@
 <div>
-    <button mat-raised-button color="primary" (click)="onStart()" style="margin-left: 30px">Start</button>
-    <button mat-raised-button color="warn" (click)="onEnd()" style="margin-left: 10px">End</button>
-    <button mat-icon-button (click)="onEdit()" style="margin-left: 10px"><mat-icon>edit</mat-icon></button>
+    <button *ngIf="canStart" mat-raised-button class="btn" (click)="onStart()">Start</button>
+    <button *ngIf="canEnd" mat-raised-button class="btn" (click)="onEnd()">End</button>
+    <button mat-icon-button (click)="onEdit()" [disabled]="ongoing" [title]="btnTitle">
+        <mat-icon>edit</mat-icon>
+    </button>
 </div>
 <div class="grid-container">
     <app-tasklist [listTitle]="'To Do'" [taskList]="sprint_list"></app-tasklist>

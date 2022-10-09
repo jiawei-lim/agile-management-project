@@ -17,9 +17,15 @@ export class SprintComponent implements OnInit {
   sprint_data!: sprint;
   DialogRef!: MatDialogRef<SprintFormComponent>;
 
+  // used for buttons (disabling/hiding)
+  ongoing = false;
+  btnTitle = 'Edit sprint';
+  canStart = true;
+  canEnd = false;
+
   constructor(
     private db: DbService,
-    private dialog: MatDialog,) {
+    private dialog: MatDialog) {
 
   }
 
@@ -32,9 +38,19 @@ export class SprintComponent implements OnInit {
 
     this.db.getSprints().subscribe((res) => {
       for (let i = 0; i < res.length; i++) {
+        if (res[i].sprint_status === "Active") {
+          this.canStart = false;
+        }
         if (res[i].sprint_id == this.sprint_id) {
           this.sprint_data = res[i];
         }
+      }
+      // disable editing ongoing sprints
+      if (this.sprint_data.sprint_status === "Active") {
+        this.ongoing = true;
+        this.btnTitle = 'Cannot make changes to ongoing sprints';
+        this.canStart = false;
+        this.canEnd = true;
       }
     }, (err) => {
       console.log(err)
@@ -46,7 +62,7 @@ export class SprintComponent implements OnInit {
     this.sprint_data.sprint_status = 'Active';
     this.db.updateSprint(this.sprint_data).subscribe(
       res => { console.log(res) },
-      err => console.log(err)
+      err => { console.log(err) }
     )
   }
 
