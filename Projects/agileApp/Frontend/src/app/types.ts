@@ -25,3 +25,12 @@ export interface sprint {
     end_date: string,
     sprint_status:string
 }
+
+export interface activity {
+    activity_id: number,
+    member_name: string,
+    activity_desc: string,
+    activity_dur:Time,
+    activity_datetime: Date,
+    task_id:number
+}

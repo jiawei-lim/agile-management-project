@@ -1,11 +1,13 @@
-import { Component, OnInit, EventEmitter, Output,Inject } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output,Inject,ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { task } from '../types';
+import { task,activity } from '../types';
 import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { TaskListServicesService } from '../services/task-list-services.service';
 import { TimelogComponent } from '../timelog/timelog.component';
-import { isElementAccessExpression } from 'typescript';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import { TimeformComponent } from '../timeform/timeform.component';
 
 @Component({
   selector: 'app-taskdetail',
@@ -18,16 +20,33 @@ export class TaskdetailComponent implements OnInit {
 
   DialogRef!: MatDialogRef<TaskformComponent>;
   DialogRef2!:MatDialogRef<TimelogComponent>;
-  
+  TimeDialogRef:MatDialogRef<TimeformComponent>;
+
+  activity_data:activity[];
+  displayedColumns: string[] = ['member_name', 'activity_desc', 'activity_datetime', 'activity_dur','actions'];
+  dataSource:any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: task,
     private db:DbService,
     private dialog:MatDialog,
-    private notification:TaskListServicesService) { }
+    private notification:TaskListServicesService) { 
+      
+    }
+  
 
   ngOnInit(): void {
     console.log(this.data)
     console.log(this.data.total_time)
+    this.db.searchActivityByTask(this.data.task_id).subscribe(
+      (res) => {
+        this.activity_data = res
+        this.dataSource = new MatTableDataSource<activity>(this.activity_data);
+        this.dataSource.paginator = this.paginator;
+      },
+      (err) => console.log(err)
+    )
   }
   
   // check if the task has been added to the sprint
@@ -90,5 +109,24 @@ export class TaskdetailComponent implements OnInit {
       
     })
     
+  }
+
+  deleteActivity(activity:activity){
+    console.log(activity)
+    this.db.deleteActivity(activity).subscribe(
+      res => {console.log(res)},
+      err => {console.log(err)}
+    )
+  }
+
+  editActivity(activity:activity){
+    this.TimeDialogRef = this.dialog.open(TimeformComponent,{
+      data:activity
+    })
+
+  }
+
+  addActivity(){
+    this.TimeDialogRef = this.dialog.open(TimeformComponent)
   }
 }

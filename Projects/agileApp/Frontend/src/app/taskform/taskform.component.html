@@ -43,7 +43,7 @@
         
         <mat-form-field appearance="outline">
             <mat-label>Tag</mat-label>
-            <input matInput placeholder="enter a tag"  name="tag" formControlName="tag" [formControl]="myControl" [matAutocomplete]="auto">
+            <input matInput placeholder="enter a tag"  name="tag" formControlName="tag"  [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                   {{option}}

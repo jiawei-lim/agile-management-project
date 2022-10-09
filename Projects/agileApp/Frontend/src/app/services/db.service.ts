@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { task, sprint } from '../types';
+import { task, sprint, activity } from '../types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -47,6 +47,14 @@ export class DbService {
 
   updateSprintStatus(data:any): Observable<sprint[]> {
     return this.http.post<sprint[]>(this.url + "/sprints/update", data, this.httpOptions)
+  }
+
+  searchActivityByTask(task_id:number): Observable<activity[]> {
+    return this.http.get<activity[]>(this.url + "/activity/searchTask/"+task_id, { responseType: "json" })
+  }
+
+  deleteActivity(activity_id:activity) {
+    return this.http.post(this.url + "/activity/delete/",activity_id, { responseType: "json" })
   }
 
 }
