@@ -64,10 +64,10 @@ export class SprintComponent implements OnInit {
     // update sprint info
     this.DialogRef.componentInstance.updateClicked.subscribe(res => {
       this.sprint_data = res;
+      this.db.updateSprint(this.sprint_data).subscribe(
+        res => { console.log(res) },
+        err => { console.log(err) }
+      )
     })
-    this.db.updateSprint(this.sprint_data).subscribe(
-      res => { console.log(res) },
-      err => { console.log(err) }
-    )
   }
 }
