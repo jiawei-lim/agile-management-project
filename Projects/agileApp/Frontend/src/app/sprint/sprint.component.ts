@@ -13,15 +13,16 @@ export class SprintComponent implements OnInit {
 
   @Input() sprint_id!: number;
   @Output() submitClicked = new EventEmitter<sprint>();
-  sprint_list: task[] = [];
+  sprint_tasks: task[] = [];
   sprint_data!: sprint;
   DialogRef!: MatDialogRef<SprintFormComponent>;
 
   // used for buttons (disabling/hiding)
   ongoing = false;
-  btnTitle = 'Edit sprint';
   canStart = true;
   canEnd = false;
+  editTitle = 'Edit sprint';
+  deleteTitle = 'Remove sprint';
 
   constructor(
     private db: DbService,
@@ -31,7 +32,7 @@ export class SprintComponent implements OnInit {
 
   ngOnInit(): void {
     this.db.getTasks(this.sprint_id).subscribe((res) => {
-      this.sprint_list = res;
+      this.sprint_tasks = res;
     }, (err) => {
       console.log(err)
     })
@@ -48,9 +49,10 @@ export class SprintComponent implements OnInit {
       // disable editing ongoing sprints
       if (this.sprint_data.sprint_status === "Active") {
         this.ongoing = true;
-        this.btnTitle = 'Cannot make changes to ongoing sprints';
         this.canStart = false;
         this.canEnd = true;
+        this.editTitle = 'Cannot make changes to ongoing sprints';
+        this.deleteTitle = 'Cannot remove ongoing sprints';
       }
     }, (err) => {
       console.log(err)
@@ -88,5 +90,20 @@ export class SprintComponent implements OnInit {
         err => { console.log(err) }
       )
     })
+  }
+
+  // remove sprint
+  onDelete(): void {
+    if (window.confirm("Are you sure you want to remove this sprint?")) {
+      // reset the tasks' sprint id
+      for (let i = 0; i < this.sprint_tasks.length; i++) {
+        // this.sprint_tasks[i].sprint_id = null;
+      }
+      // remove from DB
+      this.db.deleteSprint(this.sprint_data).subscribe(
+        res => { console.log(res) },
+        err => { console.log(err) }
+      )
+    }
   }
 }

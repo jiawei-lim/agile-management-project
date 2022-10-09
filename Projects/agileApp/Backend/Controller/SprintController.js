@@ -48,8 +48,23 @@ const updateSprint = (req, res) => {
     })
 }
 
+const deleteSprint = (req, res) => {
+    msg = req.body
+    Sprint.destroy(
+        {
+            where: { sprint_id: msg.sprint_id }
+        }
+    ).then((suc) => {
+        res.json("Success!")
+    }).catch((err) => {
+        console.log(err)
+        res.json("Error!")
+    })
+}
+
 module.exports = {
     getSprints,
     addSprint,
-    updateSprint
+    updateSprint,
+    deleteSprint
 }

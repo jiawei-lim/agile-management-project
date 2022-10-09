@@ -1,13 +1,16 @@
 <div>
     <button *ngIf="canStart" mat-raised-button class="btn" (click)="onStart()">Start</button>
     <button *ngIf="canEnd" mat-raised-button class="btn" (click)="onEnd()">End</button>
-    <button mat-icon-button (click)="onEdit()" [disabled]="ongoing" [title]="btnTitle">
+    <button mat-icon-button (click)="onEdit()" [disabled]="ongoing" [title]="editTitle">
         <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onDelete()" [disabled]="ongoing" [title]="deleteTitle">
+        <mat-icon>delete</mat-icon>
     </button>
 </div>
 <div class="grid-container">
-    <app-tasklist [listTitle]="'To Do'" [taskList]="sprint_list"></app-tasklist>
-    <app-tasklist [listTitle]="'In Progress'" [taskList]="sprint_list"></app-tasklist>
-    <app-tasklist [listTitle]="'To Review'" [taskList]="sprint_list"></app-tasklist>
-    <app-tasklist [listTitle]="'Completed'" [taskList]="sprint_list"></app-tasklist>
+    <app-tasklist [listTitle]="'To Do'" [taskList]="sprint_tasks"></app-tasklist>
+    <app-tasklist [listTitle]="'In Progress'" [taskList]="sprint_tasks"></app-tasklist>
+    <app-tasklist [listTitle]="'To Review'" [taskList]="sprint_tasks"></app-tasklist>
+    <app-tasklist [listTitle]="'Completed'" [taskList]="sprint_tasks"></app-tasklist>
 </div>

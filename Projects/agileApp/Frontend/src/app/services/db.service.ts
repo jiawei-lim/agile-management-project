@@ -49,4 +49,8 @@ export class DbService {
     return this.http.post<sprint[]>(this.url + "/sprints/update", data, this.httpOptions)
   }
 
+  deleteSprint(data: sprint): Observable<sprint[]> {
+    return this.http.post<sprint[]>(this.url + "/sprints/delete", data, this.httpOptions)
+  }
+
 }
