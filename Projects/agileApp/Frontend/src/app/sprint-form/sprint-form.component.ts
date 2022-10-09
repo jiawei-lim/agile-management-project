@@ -52,42 +52,31 @@ export class SprintFormComponent implements OnInit {
 
   processData() {
 
-    if (!this.isUpdate) {
+    // start and end dates
+    this.sprintDataForm.controls['start_date'].setValue(
+      new DatePipe('en').transform(
+        this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
+      )
+    );
+    this.sprintDataForm.controls['end_date'].setValue(
+      new DatePipe('en').transform(
+        this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
+      )
+    );
 
-      // start and end dates
-      this.sprintDataForm.controls['start_date'].setValue(
-        new DatePipe('en').transform(
-          this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
-        )
-      );
-      this.sprintDataForm.controls['end_date'].setValue(
-        new DatePipe('en').transform(
-          this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
-        )
-      );
+    if (this.isUpdate) {
+
+      // keep the original sprint id and status
+      this.sprintDataForm.controls['sprint_id'].setValue(this.data.sprint_id);
+      this.sprintDataForm.controls['sprint_status'].setValue(this.data.sprint_status);
+
+      // update
+      this.updateClicked.emit(this.sprintDataForm.value);
+      
+    } else {
 
       // save to DB
       this.submitClicked.emit(this.sprintDataForm.value);
-
-    } else {
-
-      // reuse sprint id and status
-      this.sprintDataForm.controls['sprint_id'].setValue(this.data.sprint_id);
-      this.sprintDataForm.controls['sprint_status'].setValue(this.data.sprint_status);
-      // possible new values
-      this.sprintDataForm.controls['start_date'].setValue(
-        new DatePipe('en').transform(
-          this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
-        )
-      );
-      this.sprintDataForm.controls['end_date'].setValue(
-        new DatePipe('en').transform(
-          this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
-        )
-      );
-
-      // update to DB
-      this.updateClicked.emit(this.sprintDataForm.value);
 
     }
 

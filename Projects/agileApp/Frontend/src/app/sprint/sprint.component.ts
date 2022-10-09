@@ -46,7 +46,8 @@ export class SprintComponent implements OnInit {
     this.sprint_data.sprint_status = 'Active';
     this.db.updateSprint(this.sprint_data).subscribe(
       res => { console.log(res) },
-      err => console.log(err))
+      err => console.log(err)
+    )
   }
 
   // manually end sprint
@@ -54,17 +55,19 @@ export class SprintComponent implements OnInit {
     this.sprint_data.sprint_status = 'Inactive';
     this.db.updateSprint(this.sprint_data).subscribe(
       res => { console.log(res) },
-      err => { console.log(err) })
+      err => { console.log(err) }
+    )
   }
 
   // edit sprint
   onEdit(): void {
+    // open sprint form
     this.DialogRef = this.dialog.open(SprintFormComponent, { data: this.sprint_data });
 
     // update sprint info
     this.DialogRef.componentInstance.updateClicked.subscribe(res => {
-      this.sprint_data = res;
-      this.db.updateSprint(this.sprint_data).subscribe(
+      console.log(res);
+      this.db.updateSprint(res).subscribe(
         res => { console.log(res) },
         err => { console.log(err) }
       )
