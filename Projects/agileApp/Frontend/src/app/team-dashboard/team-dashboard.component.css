@@ -1,0 +1,9 @@
+.text_button{
+    margin:10px;
+    padding: 10px;
+    line-height: 18px;
+    height: auto;
+    width: 100px;
+    position: relative;
+    left: 20px;
+}

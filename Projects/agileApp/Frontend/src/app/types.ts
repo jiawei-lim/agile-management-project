@@ -25,3 +25,9 @@ export interface sprint {
     end_date: string,
     sprint_status:string
 }
+
+export interface team{
+    member_id:number,
+    name: string,
+    email:string
+}

@@ -14,7 +14,6 @@ import {filter} from "rxjs"
 })
 export class BacklogComponent implements OnInit {
 
-  
   taskLists:task[] = [];
 
 DialogRef!: MatDialogRef<TaskformComponent>;

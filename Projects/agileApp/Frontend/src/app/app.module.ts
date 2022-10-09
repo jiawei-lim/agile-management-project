@@ -36,6 +36,8 @@ import { SprintFormComponent } from './sprint-form/sprint-form.component';
 
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
+import { MemberformComponent } from './memberform/memberform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     SprintComponent,
     SprintBacklogComponent,
     TimelogComponent,
-    SprintFormComponent
+    SprintFormComponent,
+    TeamDashboardComponent,
+    MemberformComponent
   ],
   imports: [
     HttpClientModule,

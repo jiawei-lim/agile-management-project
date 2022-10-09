@@ -5,6 +5,7 @@ const cors = require("cors"); //For browsers, so doesnt show error
 
 const taskRoute = require('./Route/Task') //Router that defines API calls
 const sprintRoute = require('./Route/Sprint')
+const teamRoute = require('./Route/Team')
 const db = require('./db') //Calling the DB object 
 
 //Telling the app to use the libraries
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use('/tasks',taskRoute)
 app.use('/sprints',sprintRoute)
+app.use('/teams',teamRoute)
 
 //Starts the server
 app.listen(3005,()=>{
