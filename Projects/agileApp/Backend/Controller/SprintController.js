@@ -35,7 +35,7 @@ const updateSprint = (req, res) => {
             sprint_name: msg.sprint_name,
             start_date: msg.start_date,
             end_date: msg.end_date,
-            // sprint_status: msg.sprint_status
+            sprint_status: msg.sprint_status
         },
         {
             where: { sprint_id: msg.sprint_id }

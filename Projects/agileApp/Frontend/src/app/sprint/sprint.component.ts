@@ -63,13 +63,11 @@ export class SprintComponent implements OnInit {
 
     // update sprint info
     this.DialogRef.componentInstance.updateClicked.subscribe(res => {
-      console.log(res)
-      this.db.updateSprint(res).subscribe(res => {
-        console.log("Good")
-        this.DialogRef.close()
-        // location.reload()
-      }, err => console.log(err))
+      this.sprint_data = res;
     })
+    this.db.updateSprint(this.sprint_data).subscribe(
+      res => { console.log(res) },
+      err => { console.log(err) }
+    )
   }
-
 }
