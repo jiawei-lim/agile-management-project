@@ -25,6 +25,14 @@ export class TimeformComponent implements OnInit {
 
     if(data){
       this.buttonName = "Update";
+      this.activityDataForm.patchValue(data)
+      let act_date = new Date(this.data.activity_datetime)
+
+      this.activityDataForm.controls['datetime_hour'].setValue(act_date.getUTCHours())
+      this.activityDataForm.controls['datetime_minutes'].setValue(act_date.getUTCMinutes())
+
+      this.activityDataForm.controls['dur_hour'].setValue(this.data.activity_dur.substring(0,2))
+      this.activityDataForm.controls['dur_minutes'].setValue(this.data.activity_dur.substring(3,5))
     }
   }
 
@@ -32,7 +40,11 @@ export class TimeformComponent implements OnInit {
   }
 
   processData(){
+    if(this.data){
 
+    }else{
+      console.log(new Date(this.activityDataForm.value.activity_datetime))
+    }
   }
 
 }
