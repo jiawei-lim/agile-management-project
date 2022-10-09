@@ -13,6 +13,7 @@ import { DbService } from '../services/db.service';
 export class SprintFormComponent implements OnInit {
 
   @Output() submitClicked = new EventEmitter<sprint>();
+  @Output() updateClicked = new EventEmitter<sprint>();
 
   sprintDataForm: any;
   formTitle = 'Create new sprint';
@@ -35,7 +36,6 @@ export class SprintFormComponent implements OnInit {
     });
 
     if (data) {
-      console.log(data);
       this.isUpdate = true;
       // change form element
       this.formTitle = "Update sprint";
@@ -51,28 +51,45 @@ export class SprintFormComponent implements OnInit {
   }
 
   processData() {
-    // creation date
-    // const date = new Date();
-    // const today = date.toDateString();
-    // this.sprintDataForm.controls['created_date'].setValue(today);
 
+    if (!this.isUpdate) {
 
-    // start and end dates
-    this.sprintDataForm.controls['start_date'].setValue(
-      new DatePipe('en').transform(
-        this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
-      )
-    );
-    this.sprintDataForm.controls['end_date'].setValue(
-      new DatePipe('en').transform(
-        this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
-      )
-    );
+      // start and end dates
+      this.sprintDataForm.controls['start_date'].setValue(
+        new DatePipe('en').transform(
+          this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
+        )
+      );
+      this.sprintDataForm.controls['end_date'].setValue(
+        new DatePipe('en').transform(
+          this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
+        )
+      );
 
+      // save to DB
+      this.submitClicked.emit(this.sprintDataForm.value);
 
-    // save to DB
-    this.submitClicked.emit(this.sprintDataForm.value);
+    } else {
 
+      // reuse sprint id and status
+      this.sprintDataForm.controls['sprint_id'].setValue(this.data.sprint_id);
+      this.sprintDataForm.controls['sprint_status'].setValue(this.data.sprint_status);
+      // possible new values
+      this.sprintDataForm.controls['start_date'].setValue(
+        new DatePipe('en').transform(
+          this.sprintDataForm.controls['start_date'].getRawValue(), 'yyyy-MM-dd'
+        )
+      );
+      this.sprintDataForm.controls['end_date'].setValue(
+        new DatePipe('en').transform(
+          this.sprintDataForm.controls['end_date'].getRawValue(), 'yyyy-MM-dd'
+        )
+      );
+
+      // update to DB
+      this.updateClicked.emit(this.sprintDataForm.value);
+
+    }
 
     // close dialog
     this.dialogRef.close();
