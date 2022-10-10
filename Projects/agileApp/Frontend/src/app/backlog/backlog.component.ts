@@ -20,11 +20,8 @@ export class BacklogComponent implements OnInit {
   DialogRef!: MatDialogRef<TaskformComponent>;
 
   // for filtering
-  // filter = {
-  //   filterTag: '',
-  //   filterPriority: ''
-  // }
   filterTag = '';
+  filterPriority = '';
   canFilter = false;
   canReset = false;
 
@@ -68,9 +65,9 @@ export class BacklogComponent implements OnInit {
     this.canFilter = true;
   }
 
-  // onSelectPriority(value: any): void {
-  //   this.filter.filterPriority = value;
-  // }
+  onSelectPriority(value: any): void {
+    this.filterPriority = value;
+  }
 
   onFilter(): void {
     this.canFilter = false;
@@ -78,19 +75,22 @@ export class BacklogComponent implements OnInit {
     // filter task based on tag and priority
     this.db.filterTask(this.filterTag).subscribe(
       res => {
-        console.log(res)
-        this.taskLists = res
+        console.log(res);
+        this.taskLists = res;
       },
       err => { console.log(err) }
     )
   }
 
-  onReset(): void {
+  onReset(tag: any): void {
     this.canReset = false;
     // show all tasks again
     this.db.getTasks().subscribe(res => {
       this.taskLists = res
     })
+    // reset dropdown
+    tag.value = 0;
+    this.filterTag = '';
   }
 
 }

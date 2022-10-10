@@ -38,7 +38,7 @@ export class DbService {
   }
 
   filterTask(filterTag: string): Observable<any> {
-    return this.http.get<task[]>(this.url + "/tasks/filter/" + filterTag, { responseType: "json" })
+    return this.http.post(this.url + "/tasks/filter/" + filterTag, { responseType: "json" })
   }
 
   getSprints(): Observable<sprint[]> {
