@@ -25,6 +25,7 @@ export class BacklogComponent implements OnInit {
   //   filterPriority: ''
   // }
   filterTag = '';
+  canFilter = false;
   canReset = false;
 
   constructor(public dialog: MatDialog, private db: DbService, private notification: TaskListServicesService) {
@@ -64,6 +65,7 @@ export class BacklogComponent implements OnInit {
   // for filtering task
   onSelectTag(value: any): void {
     this.filterTag = value;
+    this.canFilter = true;
   }
 
   // onSelectPriority(value: any): void {
@@ -71,6 +73,7 @@ export class BacklogComponent implements OnInit {
   // }
 
   onFilter(): void {
+    this.canFilter = false;
     this.canReset = true;
     // filter task based on tag and priority
     this.db.filterTask(this.filterTag).subscribe(
@@ -84,6 +87,10 @@ export class BacklogComponent implements OnInit {
 
   onReset(): void {
     this.canReset = false;
+    // show all tasks again
+    this.db.getTasks().subscribe(res => {
+      this.taskLists = res
+    })
   }
 
 }

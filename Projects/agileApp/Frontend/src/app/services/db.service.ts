@@ -37,10 +37,7 @@ export class DbService {
     return this.http.post(this.url + "/tasks/update", data, this.httpOptions)
   }
 
-  filterTask(filterTag?: string): Observable<any> {
-    if (!filterTag) {
-      filterTag = "";
-    }
+  filterTask(filterTag: string): Observable<any> {
     return this.http.get<task[]>(this.url + "/tasks/filter/" + filterTag, { responseType: "json" })
   }
 
