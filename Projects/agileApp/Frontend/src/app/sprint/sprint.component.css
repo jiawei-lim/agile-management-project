@@ -19,7 +19,12 @@ button {
   border-radius: 4px;
 }
 
-.btn:hover {
+.start:hover {
   color: white;
-  background-color: black;
+  background-color: rgb(63, 81, 181);
+}
+
+.end:hover {
+  color: white;
+  background-color: rgb(244, 67, 54);
 }
