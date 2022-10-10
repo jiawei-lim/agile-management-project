@@ -97,7 +97,7 @@ export class SprintComponent implements OnInit {
     if (window.confirm("Are you sure you want to remove this sprint?")) {
       // reset the tasks' sprint id
       for (let i = 0; i < this.sprint_tasks.length; i++) {
-        // this.sprint_tasks[i].sprint_id = null;
+        this.sprint_tasks[i].sprint_id = null;
       }
       // remove from DB
       this.db.deleteSprint(this.sprint_data).subscribe(
