@@ -37,6 +37,13 @@ export class DbService {
     return this.http.post(this.url + "/tasks/update", data, this.httpOptions)
   }
 
+  filterTask(filterTag?: string): Observable<any> {
+    if (!filterTag) {
+      filterTag = "";
+    }
+    return this.http.post(this.url + "/tasks/filter" + filterTag, { responseType: "json" })
+  }
+
   getSprints(): Observable<sprint[]> {
     return this.http.get<sprint[]>(this.url + "/sprints", { responseType: "json" })
   }
@@ -45,7 +52,7 @@ export class DbService {
     return this.http.post<sprint[]>(this.url + "/sprints/insert", data, this.httpOptions)
   }
 
-  updateSprintStatus(data:any): Observable<sprint[]> {
+  updateSprintStatus(data: any): Observable<sprint[]> {
     return this.http.post<sprint[]>(this.url + "/sprints/update", data, this.httpOptions)
   }
 

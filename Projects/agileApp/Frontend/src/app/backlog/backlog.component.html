@@ -1,9 +1,36 @@
+<div style="position: absolute; top: 5px; right: 20px; margin-bottom: 5px">
+    <mat-form-field appearance="outline" style="position: relative; right: 50px; height: 10px">
+        <mat-label>Tag</mat-label>
+        <mat-select #filterTag (valueChange)="onSelectTag(filterTag.value)">
+            <mat-option value="Story">Story</mat-option>
+            <mat-option value="Task">Task</mat-option>
+            <mat-option value="UI/UX">UI/UX</mat-option>
+            <mat-option value="Maintanence">Maintanence</mat-option>
+            <mat-option value="Bug">Bug</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline" style="position: relative; right: 50px; height: 10px">
+        <mat-label>Priority</mat-label>
+        <mat-select #filterPriority (valueChange)="onSelectPriority(filterPriority.value)">
+            <mat-option value="High">High</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="Low">Low</mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    <button mat-icon-button style="margin: 5px" title="Filter task" (click)="onFilter()">
+        <mat-icon>filter_alt</mat-icon>
+    </button>
+    <button mat-icon-button style="margin: 5px" title="Reset filter" [disabled]="!canReset" (click)="onReset()">
+        <mat-icon>filter_alt_off</mat-icon>
+    </button>
+</div>
+<br><br>
 <div class="grid-container">
     <app-tasklist [listTitle]="'To Do'" [taskList]="taskLists"></app-tasklist>
     <app-tasklist [listTitle]="'In Progress'" [taskList]="taskLists"></app-tasklist>
     <app-tasklist [listTitle]="'To Review'" [taskList]="taskLists"></app-tasklist>
     <app-tasklist [listTitle]="'Completed'" [taskList]="taskLists"></app-tasklist>
-    <button mat-raised-button class="text_button" (click)="openDialog('0ms', '0ms')"> 
+    <button mat-raised-button class="text_button" (click)="openDialog('0ms', '0ms')">
         Add Task
     </button>
 </div>
