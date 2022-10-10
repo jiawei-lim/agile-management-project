@@ -1,7 +1,8 @@
 <div style="position: absolute; top: 5px; right: 20px; margin-bottom: 5px">
     <mat-form-field appearance="outline" style="position: relative; right: 50px; height: 10px">
         <mat-label>Tag</mat-label>
-        <mat-select #filterTag (valueChange)="onSelectTag(filterTag.value)">
+        <mat-select id="filterTag" #filterTag (valueChange)="onSelectTag(filterTag.value)">
+            <mat-option value="default" selected>N/A</mat-option>
             <mat-option value="Story">Story</mat-option>
             <mat-option value="Task">Task</mat-option>
             <mat-option value="UI/UX">UI/UX</mat-option>

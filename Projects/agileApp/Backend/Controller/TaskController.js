@@ -12,6 +12,16 @@ const getTasks = (req, res) => {
         .catch(err => console.log(err))
 }
 
+const filterTask = (req, res) => {
+    req_tag = req.params.filterTag;
+
+    Task.findAll(req_tag ? { where: { tag: req_tag } } : {})
+        .then(task => {
+            res.json(task)
+        })
+        .catch(err => console.log(err))
+}
+
 //Get task according to 
 
 //Insert Task into the DB
@@ -68,16 +78,6 @@ const updateTask = (req, res) => {
         console.log(err)
         res.json("Error!")
     })
-}
-
-const filterTask = (req, res) => {
-    req_tag = req.params.filterTag;
-
-    Task.findAll(req_tag ? { where: { tag: req_tag } } : {})
-        .then(task => {
-            res.json({"test": req_tag, "task": task})
-        })
-        .catch(err => console.log(err))
 }
 
 // Export the above method
