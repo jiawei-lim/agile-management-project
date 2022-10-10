@@ -8,13 +8,14 @@ import { TimelogComponent } from '../timelog/timelog.component';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { TimeformComponent } from '../timeform/timeform.component';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-taskdetail',
   templateUrl: './taskdetail.component.html',
   styleUrls: ['./taskdetail.component.css']
 })
-export class TaskdetailComponent implements OnInit {
+export class TaskdetailComponent implements OnInit,AfterViewInit {
 
   @Output() submitClicked = new EventEmitter<task>();
 
@@ -26,6 +27,8 @@ export class TaskdetailComponent implements OnInit {
   displayedColumns: string[] = ['member_name', 'activity_desc', 'activity_datetime', 'activity_dur','actions'];
   dataSource:any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
 
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: task,
@@ -34,7 +37,6 @@ export class TaskdetailComponent implements OnInit {
     private notification:TaskListServicesService) { 
       
     }
-  
 
   ngOnInit(): void {
     console.log(this.data)
@@ -42,11 +44,16 @@ export class TaskdetailComponent implements OnInit {
     this.db.searchActivityByTask(this.data.task_id).subscribe(
       (res) => {
         this.activity_data = res
-        this.dataSource = new MatTableDataSource<activity>(this.activity_data);
+        this.dataSource = new MatTableDataSource<activity>(res);
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       (err) => console.log(err)
     )
+  }
+
+  ngAfterViewInit(): void {
+    console.log("AFTERVIEW",this.dataSource.paginator)
   }
   
   // check if the task has been added to the sprint
@@ -127,6 +134,48 @@ export class TaskdetailComponent implements OnInit {
   }
 
   addActivity(){
-    this.TimeDialogRef = this.dialog.open(TimeformComponent)
+    this.TimeDialogRef = this.dialog.open(TimeformComponent);
+    this.TimeDialogRef.componentInstance.submitClicked.subscribe(
+      (res)=>{
+        res['task_id'] = this.data.task_id;
+        this.db.insertActivity(res).subscribe(
+          res => console.log(res),
+          err => console.log(err)
+        )
+      }
+    )
+  }
+
+  getTotalDuration(){
+    let totalDur = "00:00:00";
+    if(this.activity_data && this.activity_data.length>0){
+      let tmp = this.activity_data.map(x=>this.timestrToSec(x.activity_dur)).reduce((acc,curr)=>acc+curr)
+      totalDur = this.formatTime(tmp)
+    }
+    return totalDur
+  }
+
+
+  //https://stackoverflow.com/questions/26056434/sum-of-time-using-javascript
+  timestrToSec(timestr:any):number {
+    var parts = timestr.split(":");
+    return (parts[0] * 3600) +
+           (parts[1] * 60) +
+           (+parts[2]);
+  }
+  
+  pad(num:number) {
+    if(num < 10) {
+      return "0" + num;
+    } else {
+      return "" + num;
+    }
+  }
+  
+  formatTime(seconds:any) {
+    return [this.pad(Math.floor(seconds/3600)),
+            this.pad(Math.floor(seconds/60)%60),
+            this.pad(seconds%60),
+            ].join(":");
   }
 }

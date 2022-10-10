@@ -45,6 +45,23 @@ const deleteActivity = (req,res) => {
     .catch(err=>res.json("Error!"))
 }
 
+const updateActivity = (req,res) => {
+    msg = req.body
+    Activity.update({
+        member_name:msg.member_name,
+        activity_desc:msg.activity_desc,
+        activity_dur:msg.activity_dur,
+        activity_datetime:msg.activity_datetime
+    },{
+        where:{activity_id:msg.activity_id}
+    }).then((suc)=>{
+        res.json("Success!")
+    }).catch((err)=>{
+        console.log(err)
+        res.json("Error!")
+    })
+}
+
 
 
 
@@ -52,5 +69,6 @@ module.exports = {
     getAllActivity,
     searchTask,
     addActivity,
-    deleteActivity
+    deleteActivity,
+    updateActivity
 }

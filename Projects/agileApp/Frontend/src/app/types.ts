@@ -31,6 +31,6 @@ export interface activity {
     member_name: string,
     activity_desc: string,
     activity_dur:string,
-    activity_datetime: Date,
+    activity_datetime: string,
     task_id:number
 }

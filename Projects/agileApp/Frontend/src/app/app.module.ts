@@ -33,6 +33,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { TimelogComponent } from './timelog/timelog.component';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -76,7 +77,8 @@ import { TimeformComponent } from './timeform/timeform.component';
     MatTabsModule,
     MatExpansionModule,
     MatAutocompleteModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

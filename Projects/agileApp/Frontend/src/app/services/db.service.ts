@@ -57,4 +57,8 @@ export class DbService {
     return this.http.post(this.url + "/activity/delete/",activity_id, { responseType: "json" })
   }
 
+  insertActivity(act:activity){
+    return this.http.post(this.url + "/activity/add",act, { responseType: "json" })
+  }
+
 }

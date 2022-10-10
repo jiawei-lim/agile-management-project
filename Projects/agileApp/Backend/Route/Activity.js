@@ -8,5 +8,6 @@ router.get('/getAll', controller.getAllActivity) // GET request (application req
 router.get('/searchTask/:task_id',controller.searchTask) // GET request (application requests for data)
 router.post('/add',controller.addActivity)
 router.post('/delete',controller.deleteActivity)
+router.post('/update',controller.updateActivity)
 
 module.exports = router
