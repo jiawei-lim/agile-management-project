@@ -61,4 +61,7 @@ export class DbService {
     return this.http.post(this.url + "/activity/add",act, { responseType: "json" })
   }
 
+  updateActivity(data: activity): Observable<any> {
+    return this.http.post(this.url + "/activity/update", data, this.httpOptions)
+  }
 }

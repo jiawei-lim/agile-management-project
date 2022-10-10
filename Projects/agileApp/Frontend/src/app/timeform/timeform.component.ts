@@ -47,25 +47,33 @@ export class TimeformComponent implements OnInit {
 
   processData(){
     if(this.data){
-
-    }else{
       let tempData = this.activityDataForm.value
-      console.log(this.formatDatetimeStr(this.activityDataForm))
       let actJson:activity = {
-        activity_id:null,
+        activity_id:this.data.activity_id,
         member_name:tempData.member_name,
         activity_dur:this.formatTimeStr(this.activityDataForm),
         activity_datetime:this.formatDatetimeStr(this.activityDataForm),
         activity_desc:tempData.activity_desc,
-        task_id:null
+        task_id:this.data.task_id
       }
-      this.submitClicked.emit(actJson);
-      this.dialogRef.close()
+      this.updateClicked.emit(actJson) 
+    }else{
+      let tempData = this.activityDataForm.value
+      let actJson:activity = {
+      activity_id:null,
+      member_name:tempData.member_name,
+      activity_dur:this.formatTimeStr(this.activityDataForm),
+      activity_datetime:this.formatDatetimeStr(this.activityDataForm),
+      activity_desc:tempData.activity_desc,
+      task_id:null
     }
+      this.submitClicked.emit(actJson);
+    }
+    this.dialogRef.close()
   }
 
   formatDatetimeStr(dataForm:any):string{
-    let date = dataForm.value.activity_datetime
+    let date = new Date(dataForm.value.activity_datetime)
     let dateStr = date.getUTCFullYear() + '-' +
       ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
       ('00' + date.getDate()).slice(-2)

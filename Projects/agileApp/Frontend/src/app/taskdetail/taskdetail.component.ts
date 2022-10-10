@@ -130,6 +130,17 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
     this.TimeDialogRef = this.dialog.open(TimeformComponent,{
       data:activity
     })
+    
+    this.TimeDialogRef.componentInstance.updateClicked.subscribe(
+      (res)=>{
+        alert("Update")
+        res['task_id'] = this.data.task_id;
+        this.db.updateActivity(res).subscribe(
+          res=>console.log(res),
+          err => console.log(err)
+        )
+      }
+    )
 
   }
 
