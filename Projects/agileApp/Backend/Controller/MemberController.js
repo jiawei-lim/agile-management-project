@@ -1,8 +1,8 @@
-const Team = require("../Models/Team");
+const Member = require("../Models/Member");
 
 // gets all the sprints in the 'sprints' table in the DB
-const getTeam = (req, res) => {
-    Team.findAll()
+const getMembers = (req, res) => {
+    Member.findAll()
         .then(team => {
             res.json(team)
         })
@@ -13,9 +13,9 @@ const getTeam = (req, res) => {
 const addMember = (req, res) => {
     msg = req.body;
     console.log(msg);
-    Team.create({
-        name: msg.name,
-        email:msg.email
+    Member.create({
+        member_name: msg.name,
+        member_email:msg.email
     }).then((suc) => {
         res.json("Success!");
     }).catch((err) => {
@@ -26,6 +26,6 @@ const addMember = (req, res) => {
 
 
 module.exports = {
-    getTeam,
+    getMembers,
     addMember
 }

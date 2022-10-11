@@ -2,21 +2,22 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 //Represent Database schema to Sequelize
-const Team = db.define('team',{
+const Member = db.define('member',{
     member_id:{
         type:Sequelize.INTEGER,
         primaryKey:true
     },
-    name:{
+    member_name:{
         type:Sequelize.STRING
     },
-    email:{
+    member_email:{
         type:Sequelize.STRING
     }
 },{
+    freezeTableName:true,
     id:false,
     createdAt:false,
     updatedAt:false
 })
 
-module.exports = Team
+module.exports = Member
