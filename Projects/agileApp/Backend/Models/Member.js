@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 //Represent Database schema to Sequelize
-const Member = db.define('member',{
+const Member = db.define('members',{
     member_id:{
         type:Sequelize.INTEGER,
         primaryKey:true
@@ -14,7 +14,6 @@ const Member = db.define('member',{
         type:Sequelize.STRING
     }
 },{
-    freezeTableName:true,
     id:false,
     createdAt:false,
     updatedAt:false

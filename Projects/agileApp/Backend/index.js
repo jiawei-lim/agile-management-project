@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use('/tasks',taskRoute)
 app.use('/sprints',sprintRoute)
-app.use('/member',MemberRoute)
+app.use('/members',MemberRoute)
 
 //Starts the server
 app.listen(3005,()=>{
