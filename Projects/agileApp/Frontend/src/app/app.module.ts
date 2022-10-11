@@ -34,7 +34,7 @@ import { TimelogComponent } from './timelog/timelog.component';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
 
 
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
 import { MemberformComponent } from './memberform/memberform.component';
@@ -76,7 +76,8 @@ import { MemberformComponent } from './memberform/memberform.component';
     MatNativeDateModule,
     MatTabsModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

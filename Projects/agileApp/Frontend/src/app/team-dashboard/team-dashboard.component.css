@@ -7,3 +7,13 @@
     position: relative;
     left: 20px;
 }
+.grid-container {
+    display: grid;
+    grid-template-columns: auto;
+    padding: 15px;
+    gap: 15px;
+}
+
+.team-card{
+    max-width: 600px;
+}

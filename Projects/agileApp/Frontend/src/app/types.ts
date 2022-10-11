@@ -28,6 +28,6 @@ export interface sprint {
 
 export interface team{
     member_id:number,
-    name: string,
-    email:string
+    member_name: string,
+    member_email:string
 }

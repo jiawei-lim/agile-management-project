@@ -5,7 +5,7 @@ import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { TaskListServicesService } from '../services/task-list-services.service';
 import { TimelogComponent } from '../timelog/timelog.component';
-import { isElementAccessExpression } from 'typescript';
+
 
 @Component({
   selector: 'app-taskdetail',

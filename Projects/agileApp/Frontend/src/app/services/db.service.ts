@@ -49,12 +49,12 @@ export class DbService {
     return this.http.post<sprint[]>(this.url + "/sprints/update", data, this.httpOptions)
   }
 
-  getTeam():Observable<team[]>{
-    return this.http.get<team[]>(this.url+'/teams',{responseType:"json"})
+  getMembers():Observable<team[]>{
+    return this.http.get<team[]>(this.url+'/member',{responseType:"json"})
   }
 
   insertMember(data:team):Observable<team[]>{
-    return this.http.post<team[]>(this.url+'/teams/insert',data, this.httpOptions)
+    return this.http.post<team[]>(this.url+'/member/insert',data, this.httpOptions)
   }
 
 

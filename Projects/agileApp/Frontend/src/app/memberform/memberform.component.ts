@@ -18,8 +18,8 @@ export class MemberformComponent implements OnInit {
     private fb:FormBuilder) { 
       this.teamDataForm = this.fb.group({
         member_id:[''],
-        name:[''],
-        email:['']
+        member_name:[''],
+        member_email:['']
       })   }
 
   ngOnInit(): void {

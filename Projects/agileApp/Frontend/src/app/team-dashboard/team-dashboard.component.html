@@ -1,3 +1,11 @@
+<div class="grid-container"*ngFor="let member of teamlist">
+    <mat-card class="team-card">
+        <mat-card-title>{{member.member_name}}</mat-card-title>
+        <mat-card-subtitle>{{member.member_email}}</mat-card-subtitle>
+        <mat-card-content> hi</mat-card-content>
+    </mat-card>
+</div>
+
 <button mat-raised-button color="primary" class="text_button" (click)="openForm()"> 
     Add Member
 </button>
