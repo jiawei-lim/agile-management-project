@@ -50,11 +50,11 @@ export class DbService {
   }
 
   getMembers():Observable<team[]>{
-    return this.http.get<team[]>(this.url+'/member',{responseType:"json"})
+    return this.http.get<team[]>(this.url+'/members',{responseType:"json"})
   }
 
   insertMember(data:team):Observable<team[]>{
-    return this.http.post<team[]>(this.url+'/member/insert',data, this.httpOptions)
+    return this.http.post<team[]>(this.url+'/members/insert',data, this.httpOptions)
   }
 
 

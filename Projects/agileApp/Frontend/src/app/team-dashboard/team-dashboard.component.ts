@@ -31,6 +31,9 @@ export class TeamDashboardComponent implements OnInit {
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
       console.log("submit",result)
       this.db.insertMember(result).subscribe(res=>{
+        this.db.getMembers().subscribe(res=>{
+          this.teamlist = res
+        })
         
       },err=>{
         console.log(err)
