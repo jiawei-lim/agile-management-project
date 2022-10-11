@@ -14,8 +14,8 @@ const addMember = (req, res) => {
     msg = req.body;
     console.log(msg);
     Member.create({
-        member_name: msg.name,
-        member_email:msg.email
+        member_name: msg.member_name,
+        member_email:msg.member_email
     }).then((suc) => {
         res.json("Success!");
     }).catch((err) => {

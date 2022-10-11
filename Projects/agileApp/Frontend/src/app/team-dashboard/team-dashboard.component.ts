@@ -10,7 +10,6 @@ import { filter } from 'rxjs';
   selector: 'app-team-dashboard',
   templateUrl: './team-dashboard.component.html',
   styleUrls: ['./team-dashboard.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class TeamDashboardComponent implements OnInit {
   DialogRef!: MatDialogRef<MemberformComponent>;
@@ -30,7 +29,7 @@ export class TeamDashboardComponent implements OnInit {
   openForm():void{
     this.DialogRef = this.dialog.open(MemberformComponent)
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
-      console.log(result)
+      console.log("submit",result)
       this.db.insertMember(result).subscribe(res=>{
         
       },err=>{
