@@ -23,13 +23,14 @@ const addActivity = (req,res) => {
     msg = req.body
     console.log(msg)
     Activity.create({
-        member_name:msg.member_name,
+        member_id:msg.member_id,
         activity_desc:msg.activity_desc,
         activity_dur:msg.activity_dur,
         activity_datetime:msg.activity_datetime,
         task_id:msg.task_id,
     }).then((suc)=>{
-        res.json("Success!")
+        Activity.findAll()
+        .then(act=>res.json(act))
     }).catch((err)=>{
        console.log(err)
         res.json("Error!")
@@ -41,14 +42,17 @@ const deleteActivity = (req,res) => {
     msg = req.body
     Activity.destroy({
         where: {activity_id: msg.activity_id}
-    }).then(succ => res.json("Success!"))
+    }).then(succ => {
+        Activity.findAll()
+        .then(act=>res.json(act))
+    })
     .catch(err=>res.json("Error!"))
 }
 
 const updateActivity = (req,res) => {
     msg = req.body
     Activity.update({
-        member_name:msg.member_name,
+        member_id:msg.member_id,
         activity_desc:msg.activity_desc,
         activity_dur:msg.activity_dur,
         activity_datetime:msg.activity_datetime

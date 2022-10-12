@@ -20,7 +20,7 @@ export class TimeformComponent implements OnInit {
     public dialogRef: MatDialogRef<TimeformComponent>,
     @Inject(MAT_DIALOG_DATA) public data: activity,private fb:FormBuilder) { 
     this.activityDataForm = this.fb.group({
-      member_name:[''],
+      member_id:[''],
       activity_desc:[''],
       activity_datetime:[''],
       datetime_hour:[''],
@@ -50,7 +50,7 @@ export class TimeformComponent implements OnInit {
       let tempData = this.activityDataForm.value
       let actJson:activity = {
         activity_id:this.data.activity_id,
-        member_name:tempData.member_name,
+        member_id:tempData.member_id,
         activity_dur:this.formatTimeStr(this.activityDataForm),
         activity_datetime:this.formatDatetimeStr(this.activityDataForm),
         activity_desc:tempData.activity_desc,
@@ -61,7 +61,7 @@ export class TimeformComponent implements OnInit {
       let tempData = this.activityDataForm.value
       let actJson:activity = {
       activity_id:null,
-      member_name:tempData.member_name,
+      member_id:tempData.member_id,
       activity_dur:this.formatTimeStr(this.activityDataForm),
       activity_datetime:this.formatDatetimeStr(this.activityDataForm),
       activity_desc:tempData.activity_desc,

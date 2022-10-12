@@ -28,7 +28,7 @@ export class SprintComponent implements OnInit {
   // manually start sprint
   onStart(): void {
     this.db.updateSprintStatus({ "sprint_id": this.sprint_id, "sprint_status": "Active" }).subscribe(
-      res => { console.log(res) },
+      res => { res.status=="Error"?alert(res.message):console.log(res)},
       err => console.log(err))
   }
 

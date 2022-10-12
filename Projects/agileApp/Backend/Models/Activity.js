@@ -7,8 +7,8 @@ const Activity = db.define('activity',{
         type:Sequelize.INTEGER,
         primaryKey:true
     },
-    member_name:{
-        type:Sequelize.STRING
+    member_id:{
+        type:Sequelize.INTEGER
     },
     activity_desc:{
         type:Sequelize.STRING

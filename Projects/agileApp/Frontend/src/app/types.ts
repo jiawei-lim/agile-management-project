@@ -28,7 +28,7 @@ export interface sprint {
 
 export interface activity {
     activity_id: number,
-    member_name: string,
+    member_id: number,
     activity_desc: string,
     activity_dur:string,
     activity_datetime: string,

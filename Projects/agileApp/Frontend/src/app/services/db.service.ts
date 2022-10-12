@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class DbService {
 
   private url = "http://localhost:3005"
+  activityArr:activity[] = [];
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -16,7 +17,12 @@ export class DbService {
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.getAllActivity().subscribe(
+      res=>this.activityArr = res,
+      err=>console.log
+    )
+  }
 
   getTasks(sprint_id?: any): Observable<task[]> {
     if (!sprint_id) {
@@ -45,8 +51,8 @@ export class DbService {
     return this.http.post<sprint[]>(this.url + "/sprints/insert", data, this.httpOptions)
   }
 
-  updateSprintStatus(data:any): Observable<sprint[]> {
-    return this.http.post<sprint[]>(this.url + "/sprints/update", data, this.httpOptions)
+  updateSprintStatus(data:any): Observable<any> {
+    return this.http.post(this.url + "/sprints/update", data, this.httpOptions)
   }
 
   searchActivityByTask(task_id:number): Observable<activity[]> {
@@ -54,14 +60,24 @@ export class DbService {
   }
 
   deleteActivity(activity_id:activity) {
-    return this.http.post(this.url + "/activity/delete/",activity_id, { responseType: "json" })
+    return this.http.post<activity[]>(this.url + "/activity/delete/",activity_id, { responseType: "json" })
   }
 
   insertActivity(act:activity){
-    return this.http.post(this.url + "/activity/add",act, { responseType: "json" })
+    return this.http.post<activity[]>(this.url + "/activity/add",act, { responseType: "json" })
   }
 
   updateActivity(data: activity): Observable<any> {
     return this.http.post(this.url + "/activity/update", data, this.httpOptions)
   }
+
+  getAllActivity():Observable<any>{
+    return this.http.get<activity[]>(this.url + "/activity/getAll", { responseType: "json" })
+  }
+
+  demoActivityFunc():activity[]{
+    return this.activityArr;
+  }
+  
+  
 }
