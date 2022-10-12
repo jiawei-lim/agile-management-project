@@ -27,14 +27,34 @@ const addSprint = (req, res) => {
 }
 
 // update the status of a sprint
-const updateSprintStatus = (req, res) => {
+const updateSprint = (req, res) => {
     msg = req.body;
     console.log(msg);
-    Sprint.update({
-        sprint_status: msg.sprint_status
-    }, {
-        where: { sprint_id: msg.sprint_id }
-    }).then((suc) => {
+    Sprint.update(
+        {
+            sprint_name: msg.sprint_name,
+            start_date: msg.start_date,
+            end_date: msg.end_date,
+            sprint_status: msg.sprint_status
+        },
+        {
+            where: { sprint_id: msg.sprint_id }
+        }
+    ).then((suc) => {
+        res.json("Success!")
+    }).catch((err) => {
+        console.log(err)
+        res.json("Error!")
+    })
+}
+
+const deleteSprint = (req, res) => {
+    msg = req.body
+    Sprint.destroy(
+        {
+            where: { sprint_id: msg.sprint_id }
+        }
+    ).then((suc) => {
         res.json("Success!")
     }).catch((err) => {
         console.log(err)
@@ -45,5 +65,6 @@ const updateSprintStatus = (req, res) => {
 module.exports = {
     getSprints,
     addSprint,
-    updateSprintStatus
+    updateSprint,
+    deleteSprint
 }
