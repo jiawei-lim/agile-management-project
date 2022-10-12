@@ -1,4 +1,6 @@
 const Sprint = require("../Models/Sprint");
+const { Op } = require("sequelize");
+const Sequelize = require('sequelize');
 
 // gets all the sprints in the 'sprints' table in the DB
 const getSprints = (req, res) => {

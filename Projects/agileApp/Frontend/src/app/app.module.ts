@@ -32,10 +32,13 @@ import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.componen
 import {MatExpansionModule} from '@angular/material/expansion';
 import { TimelogComponent } from './timelog/timelog.component';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { TimeformComponent } from './timeform/timeform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +51,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     SprintComponent,
     SprintBacklogComponent,
     TimelogComponent,
-    SprintFormComponent
+    SprintFormComponent,
+    TimeformComponent
   ],
   imports: [
     HttpClientModule,
@@ -72,7 +76,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatNativeDateModule,
     MatTabsModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
