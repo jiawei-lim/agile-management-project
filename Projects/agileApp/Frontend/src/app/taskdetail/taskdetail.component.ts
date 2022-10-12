@@ -123,7 +123,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
       res => {
         console.log(res)
         this.activity_data = res.filter(x=>x.task_id==this.data.task_id)
-        this.dataSource = new MatTableDataSource<activity>(this.activity_data);
+        this.dataSource.data = this.activity_data;
         this.dataSource.paginator = this.paginator
       },
       err => {
@@ -140,7 +140,11 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
     this.TimeDialogRef.componentInstance.updateClicked.subscribe(
       (res)=>{
         this.db.updateActivity(res).subscribe(
-          res=>console.log(res),
+          res=>{
+            this.activity_data = res.filter((x:activity)=>x.task_id==this.data.task_id)
+            this.dataSource.data = this.activity_data;
+            this.dataSource.paginator = this.paginator
+          },
           err => console.log(err)
         )
       }
@@ -156,7 +160,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
         this.db.insertActivity(res).subscribe(
           res => {
             this.activity_data = res.filter(x=>x.task_id==this.data.task_id)
-            this.dataSource = new MatTableDataSource<activity>(this.activity_data);
+            this.dataSource.data = this.activity_data;
             this.dataSource.paginator = this.paginator
           },
           err => console.log(err)

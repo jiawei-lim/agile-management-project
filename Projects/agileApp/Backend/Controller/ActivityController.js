@@ -59,7 +59,8 @@ const updateActivity = (req,res) => {
     },{
         where:{activity_id:msg.activity_id}
     }).then((suc)=>{
-        res.json("Success!")
+        Activity.findAll()
+        .then(act=>res.json(act))
     }).catch((err)=>{
         console.log(err)
         res.json("Error!")
