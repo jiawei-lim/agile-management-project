@@ -57,5 +57,13 @@ export class DbService {
     return this.http.post<team[]>(this.url+'/members/insert',data, this.httpOptions)
   }
 
+  updateMember(data:team):Observable<team[]>{
+    return this.http.post<team[]>(this.url+"/members/update",data,this.httpOptions)
+  }
+
+  deleteMember(data:team):Observable<team[]>{
+    return this.http.post<team[]>(this.url+"/members/delete",data,this.httpOptions)
+  }
+
 
 }

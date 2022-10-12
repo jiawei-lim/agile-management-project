@@ -1,9 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MemberformComponent } from '../memberform/memberform.component';
 import { DbService } from '../services/db.service';
 import { team } from '../types';
-import { filter } from 'rxjs';
 
 
 @Component({
@@ -19,11 +19,15 @@ export class TeamDashboardComponent implements OnInit {
   constructor(public dialog: MatDialog,private db:DbService) { }
 
   ngOnInit(): void {
+    this.getTeam()
+    
+   
+  }
+
+  getTeam():void{
     this.db.getMembers().subscribe(res=>{
       this.teamlist=res;
-      console.log(res)
     })
-   
   }
 
   openForm():void{
@@ -38,9 +42,36 @@ export class TeamDashboardComponent implements OnInit {
       },err=>{
         console.log(err)
       })
-
+      
       this.dialog.closeAll();
   });
+  }
+
+  onEdit(member:team):void{
+    this.DialogRef= this.dialog.open(MemberformComponent,{data:member})
+
+    this.DialogRef.componentInstance.submitClicked.subscribe(result=>{
+      this.db.updateMember(result).subscribe(res=>{
+          console.log("success");
+          this.getTeam()
+      },err=>{
+        console.log(err)
+      })
+      
+      this.DialogRef.close()
+    })
+  } 
+
+  onDelete(member:team):void{
+    console.log("Delete this:",member)
+    this.db.deleteMember(member).subscribe(res=>{
+      console.log("Success");
+      this.getTeam();
+      console.log(this.teamlist)
+      
+    },err=>{
+
+    })
   }
 
 }
