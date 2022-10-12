@@ -1,11 +1,10 @@
 import { Component, OnInit,Output,Inject,EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { task } from '../types';
+import { task,sprint } from '../types';
 import { DbService } from '../services/db.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
-import { sprint } from '../types';
 
 @Component({
   selector: 'app-taskform',
@@ -23,7 +22,6 @@ export class TaskformComponent implements OnInit {
   buttonName = "Create";
   taskDataForm:any;
   options:string[] = ['Story','Task','Bug','UI/UX','Maintanence']
-  myControl = new FormControl('');
   filteredOptions!: Observable<String[]>;
   sprintOptions:any = [{"sprint_id":null,"sprint_name":"Unassigned","start_date":"","end_date":"","sprint_status":""}];
 
@@ -71,7 +69,7 @@ export class TaskformComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.taskDataForm.controls['tag'].valueChanges.pipe(
       startWith(''),map(value => this.filter(String(value))));
       this.db.getSprints().subscribe((res) => {
         this.sprintList = res

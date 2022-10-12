@@ -1,0 +1,47 @@
+<h1>{{buttonName}} Activity</h1>
+<form [formGroup]="activityDataForm" (ngSubmit)="processData()">
+    <div class="gird-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Assignee</mat-label>
+            <input matInput type="number" placeholder="Enter Assignee" formControlName="member_id">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description"  formControlName="activity_desc">
+        </mat-form-field>
+       
+        <mat-form-field appearance="outline">
+            <mat-label>Datetime</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="yyyy-mm-dd" name="due_date" formControlName="activity_datetime">
+            <mat-hint>YYYY-MM-DD</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        <div>
+            <mat-form-field class="hour">
+                <input type="number" min="0" max ="23" matInput placeholder="Hour" formControlName="datetime_hour">
+            </mat-form-field>
+
+            <mat-form-field class ="minutes">
+                <input type="number" min="0" max="59" matInput placeholder="minutes" formControlName="datetime_minutes">
+            </mat-form-field>
+        </div>
+
+        <div>
+            <p>Duration</p>
+            <mat-form-field class="hour">
+                <input type="number" min="0" max ="23" matInput placeholder="Hour" formControlName="dur_hour">
+            </mat-form-field>
+
+            <mat-form-field class ="minutes">
+                <input type="number" min="0" max="59" matInput placeholder="minutes" formControlName="dur_minutes">
+            </mat-form-field>
+        </div>
+
+
+        
+    </div>
+    <button mat-raised-button type="submit" color="primary">{{buttonName}}</button>
+</form>
