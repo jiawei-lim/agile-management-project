@@ -29,46 +29,44 @@ const addSprint = (req, res) => {
 }
 
 // update the status of a sprint
-const updateSprintStatus = (req, res) => {
+const updateSprint = (req, res) => {
     msg = req.body;
     console.log(msg);
-    
-    if(msg.sprint_status=="Active"){
-        Sprint.update({
+    Sprint.update(
+        {
+            sprint_name: msg.sprint_name,
+            start_date: msg.start_date,
+            end_date: msg.end_date,
             sprint_status: msg.sprint_status
-        }, {
-            where: { 
-                [Op.and]:[
-                {sprint_id: msg.sprint_id},
-                Sequelize.literal(`NOT('Active' IN (SELECT sprint_status FROM sprints))`)
-                ]
-            }
-        }).then((suc) => {
-            if(suc[0]){
-                res.json({"status":"Success","message":suc})
-            }else{
-                res.json({"status":"Error","message":"Only 1 sprint can be active"})
-            }
-            
-        }).catch((err) => {
-            res.json("Error!")
-        })
-    }else{
-        Sprint.update({
-            sprint_status: msg.sprint_status
-        }, {
+        },
+        {
             where: { sprint_id: msg.sprint_id }
-        }).then((suc) => {
-            res.json("Success!")
-        }).catch((err) => {
-            res.json("Error!")
-        })
-    }
-   
+        }
+    ).then((suc) => {
+        res.json("Success!")
+    }).catch((err) => {
+        console.log(err)
+        res.json("Error!")
+    })
+}
+
+const deleteSprint = (req, res) => {
+    msg = req.body
+    Sprint.destroy(
+        {
+            where: { sprint_id: msg.sprint_id }
+        }
+    ).then((suc) => {
+        res.json("Success!")
+    }).catch((err) => {
+        console.log(err)
+        res.json("Error!")
+    })
 }
 
 module.exports = {
     getSprints,
     addSprint,
-    updateSprintStatus
+    updateSprint,
+    deleteSprint
 }
