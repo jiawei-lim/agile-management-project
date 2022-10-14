@@ -26,6 +26,13 @@ export interface sprint {
     sprint_status:string
 }
 
+
+export interface team{
+    member_id:number,
+    member_name: string,
+    member_email:string
+}
+
 export interface activity {
     activity_id: number,
     member_id: number,

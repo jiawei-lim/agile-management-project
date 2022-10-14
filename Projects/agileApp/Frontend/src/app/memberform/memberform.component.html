@@ -1,0 +1,17 @@
+<h1>{{formtitle}}</h1>
+<form [formGroup]="teamDataForm" (ngSubmit)="processData()">
+    <div class="gird-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter member's name" formControlName="member_name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="abc@example.com"  formControlName="member_email">
+        </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" style="float:right" color="primary">{{buttonName}}</button>
+</form>
+
+

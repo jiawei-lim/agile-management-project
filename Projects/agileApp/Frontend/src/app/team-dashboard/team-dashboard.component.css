@@ -1,0 +1,22 @@
+.text_button{
+    margin:10px;
+    padding: 10px;
+    line-height: 18px;
+    height: auto;
+    width: 100px;
+    position: relative;
+    left: 20px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 15px;
+    gap: 15px;
+}
+
+.team-card{
+    margin:10px;
+    border-style: solid;
+    border-width: thin;
+    max-width: 500px;
+}

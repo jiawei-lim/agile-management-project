@@ -36,8 +36,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 
 
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
+import { MemberformComponent } from './memberform/memberform.component';
 import { TimeformComponent } from './timeform/timeform.component';
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { TimeformComponent } from './timeform/timeform.component';
     SprintBacklogComponent,
     TimelogComponent,
     SprintFormComponent,
+    TeamDashboardComponent,
+    MemberformComponent,
     TimeformComponent
   ],
   imports: [
@@ -77,6 +81,7 @@ import { TimeformComponent } from './timeform/timeform.component';
     MatTabsModule,
     MatExpansionModule,
     MatAutocompleteModule,
+    MatGridListModule,
     MatPaginatorModule,
     MatSortModule
   ],
