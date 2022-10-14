@@ -3,7 +3,10 @@
     <div class="gird-form">
         <mat-form-field appearance="outline">
             <mat-label>Assignee</mat-label>
-            <input matInput type="number" placeholder="Enter Assignee" formControlName="member_id">
+            <mat-select name="member"  formControlName="member_id">
+                <mat-option *ngFor="let member of memberOptions" 
+                [value]="member.member_id">{{member.member_name}}</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline">

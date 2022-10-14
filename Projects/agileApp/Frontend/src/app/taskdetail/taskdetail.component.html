@@ -21,8 +21,8 @@
                     <table mat-table [dataSource]="dataSource" matSort>
                     <!-- Name Column -->
                     <ng-container matColumnDef="member_id" >
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-                        <td mat-cell *matCellDef="let element"> {{element.member_id}} </td>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                        <td mat-cell *matCellDef="let element"> {{mapIdtoName(element.member_id)}} </td>
                         <td mat-footer-cell *matFooterCellDef></td>
                     </ng-container>
                     <!-- Desc Column -->

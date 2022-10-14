@@ -22,8 +22,10 @@ const Task = db.define('task',{
     tag:{
         type:Sequelize.STRING
     },
-    assignee:{
-        type:Sequelize.STRING
+    member_id:{
+        type:Sequelize.INTEGER,
+        references: 'members',
+        referencesKey: 'member_id' 
     },
     story_point:{
         type:Sequelize.INTEGER

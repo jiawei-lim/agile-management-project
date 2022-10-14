@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output,Inject,ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { task,activity } from '../types';
+import { task,activity,team } from '../types';
 import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { TaskListServicesService } from '../services/task-list-services.service';
@@ -28,6 +28,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
   dataSource:MatTableDataSource<activity>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort,{ static: false }) sort: MatSort;
+  member_arr:team[];
 
 
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
@@ -47,6 +48,11 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
         this.dataSource.sort = this.sort;
       },
       (err)=>console.log
+    )
+
+    this.db.getMembers().subscribe(
+      (res)=>{this.member_arr = res},
+      err=>console.log
     )
     
   }
@@ -178,6 +184,9 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
     return totalDur
   }
 
+  mapIdtoName(member_id:number){
+    return this.member_arr.filter(x=>x.member_id==member_id)[0].member_name;
+  }
 
   //https://stackoverflow.com/questions/26056434/sum-of-time-using-javascript
   timestrToSec(timestr:any):number {

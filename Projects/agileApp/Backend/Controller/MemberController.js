@@ -48,9 +48,19 @@ const deleteMember = (req,res) => {
     .catch(err=>res.json("Error!"))
 }
 
+const getName = (req, res) => {
+    req_member_id = req.params.member_id;
+    Member.findAll({ where: {member_id: req_member_id }})
+        .then(member => {
+            res.json(member)
+        })
+        .catch(err => console.log(err))
+}
+
 module.exports = {
     updateMember,
     getMembers,
     addMember,
-    deleteMember
+    deleteMember,
+    getName
 }

@@ -24,6 +24,7 @@ export class TaskformComponent implements OnInit {
   options:string[] = ['Story','Task','Bug','UI/UX','Maintanence']
   filteredOptions!: Observable<String[]>;
   sprintOptions:any = [{"sprint_id":null,"sprint_name":"Unassigned","start_date":"","end_date":"","sprint_status":""}];
+  memberOptions:any = [{"member_id":null,"member_name":"Unassigned"}];
 
   constructor(
     public dialogRef: MatDialogRef<TaskformComponent>,
@@ -40,7 +41,7 @@ export class TaskformComponent implements OnInit {
         status:[''],
         priority:[''],
         tag:[''],
-        assignee:[''],
+        member_id:[null],
         story_point:[''],
         due_date:[''],
         created_date:[''],
@@ -53,17 +54,7 @@ export class TaskformComponent implements OnInit {
         this.isUpdate = true;
         this.formTitle = "Update existing task";
         this.buttonName = "Update";
-        this.taskDataForm.controls['name'].setValue(this.data.name);
-        this.taskDataForm.controls['description'].setValue(this.data.description);
-        this.taskDataForm.controls['due_date'].setValue(this.data.due_date);
-
-        this.taskDataForm.controls['assignee'].setValue(this.data.assignee);
-        this.taskDataForm.controls['priority'].setValue(this.data.priority);
-        this.taskDataForm.controls['status'].setValue(this.data.status);
-        this.taskDataForm.controls['story_point'].setValue(this.data.story_point);
-        this.taskDataForm.controls['tag'].setValue(this.data.tag);
-        this.taskDataForm.controls['sprint_id'].setValue(this.data.sprint_id);
-        this.taskDataForm.controls['total_time'].setValue(this.data.total_time);
+        this.taskDataForm.patchValue(data)
       }
 
     }
@@ -75,6 +66,14 @@ export class TaskformComponent implements OnInit {
         this.sprintList = res
         this.sprintOptions = this.sprintOptions.concat(res);
       }, (err) => console.log(err))
+    
+    this.db.getMembers().subscribe(
+      (res)=>{
+        this.memberOptions = this.memberOptions.concat(res)
+        
+      },
+      (err)=>console.log
+    )
   }
 
 
@@ -101,7 +100,6 @@ export class TaskformComponent implements OnInit {
 
   private filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }

@@ -103,8 +103,14 @@ export class DbService {
     return this.http.post<team[]>(this.url+"/members/delete",data,this.httpOptions)
   }
 
+  getMemberName(member_id:number):Observable<team[]>{
+    return this.http.get<team[]>(this.url + "/members/getName/"+member_id, { responseType: "json" })
+  }
+
   deleteSprint(data: sprint): Observable<sprint[]> {
     return this.http.post<sprint[]>(this.url + "/sprints/delete", data, this.httpOptions)
   }
+
+  
 
 }
