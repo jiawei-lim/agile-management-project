@@ -6,6 +6,7 @@ const controller = require("../Controller/SprintController")
 
 router.get('/', controller.getSprints) // GET request (application requests for data)
 router.post('/insert', controller.addSprint)
-router.post('/update', controller.updateSprintStatus)
+router.post('/update', controller.updateSprint)
+router.post('/delete', controller.deleteSprint)
 
 module.exports = router
