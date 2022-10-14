@@ -33,12 +33,9 @@ CREATE TABLE IF NOT EXISTS `activity` (
   KEY `FK_activity_tasks` (`task_id`),
   CONSTRAINT `FK_activity_member` FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_activity_tasks` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`task_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table 2101db.activity: ~2 rows (approximately)
-INSERT INTO `activity` (`activity_id`, `member_id`, `activity_desc`, `activity_dur`, `activity_datetime`, `task_id`) VALUES
-	(57, 7, 'wdwd', '01:11:00', '2022-10-14 11:11:00', 00071),
-	(58, 5, 'wdwdwd', '02:00:00', '2022-10-14 17:30:00', 00071);
+-- Dumping data for table 2101db.activity: ~1 rows (approximately)
 
 -- Dumping structure for table 2101db.members
 CREATE TABLE IF NOT EXISTS `members` (
@@ -46,15 +43,9 @@ CREATE TABLE IF NOT EXISTS `members` (
   `member_name` varchar(50) DEFAULT NULL,
   `member_email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table 2101db.members: ~5 rows (approximately)
-INSERT INTO `members` (`member_id`, `member_name`, `member_email`) VALUES
-	(2, 'Boren', 'br@email.com'),
-	(3, 'Sam', 'sam@email.com'),
-	(4, 'JK', 'JK@email.com'),
-	(5, 'Godzilla', 'God@me.com'),
-	(7, 'Jia Wei', 'jw@mail.com');
 
 -- Dumping structure for view 2101db.member_view
 -- Creating temporary table to overcome VIEW dependency errors
@@ -75,13 +66,11 @@ CREATE TABLE IF NOT EXISTS `sprints` (
   `end_date` date DEFAULT NULL,
   `sprint_status` varchar(50) DEFAULT 'Inactive',
   PRIMARY KEY (`sprint_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table 2101db.sprints: ~2 rows (approximately)
 INSERT INTO `sprints` (`sprint_id`, `sprint_name`, `start_date`, `end_date`, `sprint_status`) VALUES
-	(16, 'Sprint 1 Demo', '2022-10-05', '2022-10-12', 'Inactive'),
-	(17, 'Sprint 2 Demo', '2022-10-05', '2022-10-12', 'Inactive'),
-	(19, 'Sprint 3', '2022-10-26', '2022-10-31', 'Inactive');
+	(20, 'Sprint 1', '2022-10-14', '2022-10-21', 'Inactive');
 
 -- Dumping structure for table 2101db.tasks
 CREATE TABLE IF NOT EXISTS `tasks` (
@@ -98,17 +87,15 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   PRIMARY KEY (`task_id`),
   KEY `SPRINT_FK` (`sprint_id`),
   KEY `MEMBER_FK` (`member_id`),
-  CONSTRAINT `MEMBER_FK` FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `MEMBER_FK` FOREIGN KEY (`member_id`) REFERENCES `members` (`member_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `SPRINT_FK` FOREIGN KEY (`sprint_id`) REFERENCES `sprints` (`sprint_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   CONSTRAINT `priority_cons` CHECK (`priority` = 'High' or `priority` = 'Medium' or `priority` = 'Low'),
   CONSTRAINT `status_cons` CHECK (`status` in ('To Do','In Progress','To Review','Completed'))
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COMMENT='Table for tasks';
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COMMENT='Table for tasks';
 
 -- Dumping data for table 2101db.tasks: ~3 rows (approximately)
 INSERT INTO `tasks` (`task_id`, `name`, `description`, `status`, `priority`, `tag`, `member_id`, `story_point`, `due_date`, `sprint_id`) VALUES
-	(00071, 'TEST', 'wdwd', 'In Progress', 'Medium', 'Story', 7, 11, '2022-10-14', 16),
-	(00072, 'awdawd', 'awdawd', 'In Progress', 'Medium', 'Story', NULL, 2, '2022-10-21', 16),
-	(00074, 'wdwd', 'wddw', 'To Do', 'Medium', 'Story', NULL, 2, '2022-10-14', NULL);
+	(00075, 'Create Skeleton Code', 'Create base code for upcoming project', 'To Do', 'High', 'Task', NULL, 10, '2022-10-18', 20);
 
 -- Dumping structure for view 2101db.task_view
 -- Creating temporary table to overcome VIEW dependency errors
