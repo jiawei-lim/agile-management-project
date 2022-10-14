@@ -54,4 +54,8 @@ export class SprintBacklogComponent implements OnInit {
     })
   }
 
+  colorPicker(){
+    return "red"
+  }
+
 }

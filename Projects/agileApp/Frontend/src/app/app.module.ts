@@ -32,12 +32,15 @@ import { SprintBacklogComponent } from './sprint-backlog/sprint-backlog.componen
 import {MatExpansionModule} from '@angular/material/expansion';
 import { TimelogComponent } from './timelog/timelog.component';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
 import { MemberformComponent } from './memberform/memberform.component';
+import { TimeformComponent } from './timeform/timeform.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +55,8 @@ import { MemberformComponent } from './memberform/memberform.component';
     TimelogComponent,
     SprintFormComponent,
     TeamDashboardComponent,
-    MemberformComponent
+    MemberformComponent,
+    TimeformComponent
   ],
   imports: [
     HttpClientModule,
@@ -77,7 +81,9 @@ import { MemberformComponent } from './memberform/memberform.component';
     MatTabsModule,
     MatExpansionModule,
     MatAutocompleteModule,
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

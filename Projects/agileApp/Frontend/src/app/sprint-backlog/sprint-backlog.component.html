@@ -19,7 +19,7 @@
                     {{sprint.sprint_name}}
                 </mat-panel-title>
                 <mat-panel-description>
-                    {{sprint.sprint_status}}
+                    <button class="tag-btn" mat-flat-button [color]="sprint.sprint_status=='Inactive'? 'primary' :'warn' " [disableRipple]="true">{{sprint.sprint_status}}</button>
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <app-sprint [sprint_id]="sprint.sprint_id"></app-sprint>
@@ -34,3 +34,6 @@
         <span>new sprint</span>
     </a>
 </div>
+
+<div style="height: 150px"></div>
+

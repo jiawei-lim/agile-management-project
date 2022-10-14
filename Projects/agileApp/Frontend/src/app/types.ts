@@ -31,3 +31,12 @@ export interface team{
     member_name: string,
     member_email:string
 }
+
+export interface activity {
+    activity_id: number,
+    member_id: number,
+    activity_desc: string,
+    activity_dur:string,
+    activity_datetime: string,
+    task_id:number
+}
