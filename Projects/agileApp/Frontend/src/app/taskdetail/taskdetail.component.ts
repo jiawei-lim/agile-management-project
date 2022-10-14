@@ -5,7 +5,6 @@ import { DbService } from '../services/db.service';
 import { TaskformComponent } from '../taskform/taskform.component';
 import { TaskListServicesService } from '../services/task-list-services.service';
 import { TimelogComponent } from '../timelog/timelog.component';
-
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { TimeformComponent } from '../timeform/timeform.component';
@@ -22,13 +21,13 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
 
   DialogRef!: MatDialogRef<TaskformComponent>;
   DialogRef2!:MatDialogRef<TimelogComponent>;
-  TimeDialogRef:MatDialogRef<TimeformComponent>;
+  TimeDialogRef!:MatDialogRef<TimeformComponent>;
 
-  activity_data:activity[];
+  activity_data!:activity[];
   displayedColumns: string[] = ['member_id', 'activity_desc', 'activity_datetime', 'activity_dur','actions'];
-  dataSource:MatTableDataSource<activity>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort,{ static: false }) sort: MatSort;
+  dataSource!:MatTableDataSource<activity>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort,{ static: false }) sort!: MatSort;
 
 
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
