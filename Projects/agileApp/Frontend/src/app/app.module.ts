@@ -34,13 +34,13 @@ import { TimelogComponent } from './timelog/timelog.component';
 import { SprintFormComponent } from './sprint-form/sprint-form.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
-
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { TeamDashboardComponent } from './team-dashboard/team-dashboard.component';
 import { MemberformComponent } from './memberform/memberform.component';
 import { TimeformComponent } from './timeform/timeform.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +83,8 @@ import { TimeformComponent } from './timeform/timeform.component';
     MatAutocompleteModule,
     MatGridListModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

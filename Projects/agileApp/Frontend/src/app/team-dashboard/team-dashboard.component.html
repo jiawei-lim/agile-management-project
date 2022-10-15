@@ -1,4 +1,14 @@
 <div class="grid-container">
+    <highcharts-chart class="total_hours" [Highcharts]="Highcharts1" [options]="chartOptions1" >   
+    </highcharts-chart>
+    <highcharts-chart class="total_hours" [Highcharts]="Highcharts2" [options]="chartOptions2" >   
+    </highcharts-chart>
+</div>
+
+
+
+
+<div class="grid-container">
     <mat-card class="team-card" *ngFor="let member of teamlist">
         <button mat-icon-button (click)="onEdit(member)"style="float: right;"><mat-icon>edit</mat-icon></button>
         <button mat-icon-button (click)="onDelete(member)"style="float: right;"><mat-icon>delete</mat-icon></button>
@@ -10,6 +20,8 @@
 <button mat-raised-button color="primary" class="text_button" (click)="openForm()"> 
     Add Member
 </button>
+
+
 
 <div style="height: 150px"></div>
 

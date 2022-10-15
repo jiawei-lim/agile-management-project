@@ -41,3 +41,12 @@ export interface activity {
     activity_datetime: string,
     task_id:number
 }
+
+export interface MemberView{
+    member_id:number,
+    member_name: string,
+    member_email:string,
+    total_time:string,
+    days_worked:number,
+    avg_time:string
+}

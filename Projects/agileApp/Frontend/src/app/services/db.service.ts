@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { task, sprint,team,activity } from '../types';
+import { task, sprint,team,activity, MemberView } from '../types';
 import { Observable } from 'rxjs';
+import { MemberExpression } from 'typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -109,6 +110,10 @@ export class DbService {
 
   deleteSprint(data: sprint): Observable<sprint[]> {
     return this.http.post<sprint[]>(this.url + "/sprints/delete", data, this.httpOptions)
+  }
+
+  getMemberView():Observable<MemberView[]>{
+    return this.http.get<MemberView[]>(this.url+"/member_view/",{responseType:"json"})
   }
 
   

@@ -21,9 +21,9 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
 
   DialogRef!: MatDialogRef<TaskformComponent>;
   DialogRef2!:MatDialogRef<TimelogComponent>;
-  TimeDialogRef:MatDialogRef<TimeformComponent>;
+  TimeDialogRef!:MatDialogRef<TimeformComponent>;
 
-  activity_data:activity[];
+  activity_data!:activity[];
   displayedColumns: string[] = ['member_id', 'activity_desc', 'activity_datetime', 'activity_dur','actions'];
   dataSource:MatTableDataSource<activity>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
