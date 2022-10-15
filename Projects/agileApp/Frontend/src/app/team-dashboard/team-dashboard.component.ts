@@ -3,7 +3,8 @@ import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MemberformComponent } from '../memberform/memberform.component';
 import { DbService } from '../services/db.service';
-import { team } from '../types';
+import { team,MemberView } from '../types';
+import * as Highcharts from 'highcharts';
 
 
 @Component({
@@ -12,22 +13,79 @@ import { team } from '../types';
   styleUrls: ['./team-dashboard.component.css'],
 })
 export class TeamDashboardComponent implements OnInit {
+  Highcharts1: typeof Highcharts = Highcharts
+  Highcharts2: typeof Highcharts = Highcharts
+  chartOptions1!: Highcharts.Options 
+  chartOptions2!:Highcharts.Options
+
+
   DialogRef!: MatDialogRef<MemberformComponent>;
   teamlist:team[] = [];
-  
+  memberviewlist!:MemberView[]
 
   constructor(public dialog: MatDialog,private db:DbService) { }
 
   ngOnInit(): void {
-    this.getTeam()
+    this.getTeam();
+    this.getView(); 
+
+  }
+
+  getView():void{
+    this.db.getMemberView().subscribe(res=>{
+      this.memberviewlist = res;
+      // console.log(this.memberviewlist)
+      const totaltimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.total_time}))
+      const avgtimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.avg_time}))
+      console.log(totaltimedata)
+      console.log(avgtimedata)
+      this.chartOptions1= {title:{text:"Total Hours"}, plotOptions : {
+        series: {
+           stacking: 'normal'
+        }
+     },
+     legend: {
+        enabled: true,
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "top",
+        y: 20,
+        itemMarginBottom:10
+    },xAxis:{categories:['Assignee']},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(totaltimedata,true)}
+      
     
-   
+    this.chartOptions2= {title:{text:"Average Hours"},xAxis:{categories:totaltimedata.map((x)=>x.name)},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(avgtimedata,false)}
+    })
   }
 
   getTeam():void{
     this.db.getMembers().subscribe(res=>{
       this.teamlist=res;
     })
+  }
+
+
+  createBarSeries<T,U>(lst:{name:string,time:string}[],flag:boolean):{name:string,data:Number[],type:string,showInLegend:boolean}[]|{name:string,colorByPoint:boolean,data:Number[],type:string,showInLegend:boolean}[]{
+
+    if(flag){
+      const series = lst.map((res)=>({name:res.name,data:[this.calculateTime(res.time)],type:"bar",showInLegend:true}))
+      console.log(series)
+      return series
+    }
+    else{
+      const timedata = lst.map((x)=>this.calculateTime(x.time))
+      console.log(timedata)
+      const series = [{name:"average time",colorByPoint:true,data:timedata,type:'bar',showInLegend: false}]
+      return series
+    }
+    
+
+  }
+
+  calculateTime(time:string):number{
+    const a = time.split(":")
+    const hour = Number(a[0])+Number(a[1])/60 + Number(a[2])/3600
+    return hour
   }
 
   openForm():void{
