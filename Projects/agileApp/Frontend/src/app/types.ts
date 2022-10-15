@@ -9,7 +9,7 @@ export interface task {
     status: string,
     priority: priority,
     tag: string,
-    assignee: string,
+    member_id: number,
     story_point: number,
     create_date: string,
     due_date: string,

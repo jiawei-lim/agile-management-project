@@ -43,7 +43,10 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Assignee</mat-label>
-            <input matInput placeholder="Assignee"  name="assignee" formControlName="assignee">
+            <mat-select name="member"  formControlName="member_id">
+                <mat-option *ngFor="let member of memberOptions" 
+                [value]="member.member_id">{{member.member_name}}</mat-option>
+            </mat-select>
         </mat-form-field>
       
         <mat-form-field appearance="outline">

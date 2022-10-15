@@ -2,6 +2,7 @@ import { Component, OnInit,Inject,EventEmitter,Output } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { activity } from '../types';
+import { DbService } from '../services/db.service';
 
 @Component({
   selector: 'app-timeform',
@@ -15,10 +16,12 @@ export class TimeformComponent implements OnInit {
 
   buttonName = "Create";
   activityDataForm:any;
+  memberOptions:any;
 
   constructor(
     public dialogRef: MatDialogRef<TimeformComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: activity,private fb:FormBuilder) { 
+    @Inject(MAT_DIALOG_DATA) public data: activity,private fb:FormBuilder,
+    private db:DbService) { 
     this.activityDataForm = this.fb.group({
       member_id:[''],
       activity_desc:[''],
@@ -43,6 +46,12 @@ export class TimeformComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.db.getMembers().subscribe(
+      (res)=>{
+        this.memberOptions = res;
+      },
+      (err)=>console.log
+    )
   }
 
   processData(){
