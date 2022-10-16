@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { DbService } from '../services/db.service';
 import { sprint, task } from '../types';
 import { SprintFormComponent } from '../sprint-form/sprint-form.component';
@@ -38,12 +38,44 @@ export class SprintComponent implements OnInit {
     })
 
     this.db.getSprints().subscribe((res) => {
+      let today = new Date();
+
       for (let i = 0; i < res.length; i++) {
+        // hiding / disabling buttons
         if (res[i].sprint_status === "Active") {
           this.canStart = false;
         }
         if (res[i].sprint_id == this.sprint_id) {
           this.sprint_data = res[i];
+        }
+        // automatically starting sprint
+        let start = new Date(res[i].start_date);
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        let end = new Date(res[i].end_date);
+        end.setHours(23);
+        end.setMinutes(59);
+        end.setSeconds(59);
+
+        if (start <= today) {
+          if (res[i].sprint_status != "Active") {
+            res[i].sprint_status = "Active";
+            this.db.updateSprint(res[i]).subscribe(
+              res => { console.log(res) },
+              err => { console.log(err) }
+            )
+            window.alert(res[i].sprint_name + " has been started automatically. ")
+          }
+        } else if (end < today) {
+          if (res[i].sprint_status != "Complete") {
+            res[i].sprint_status = "Complete";
+            this.db.updateSprint(res[i]).subscribe(
+              res => { console.log(res) },
+              err => { console.log(err) }
+            )
+            window.alert(res[i].sprint_name + " has been ended automatically . ")
+          }
         }
       }
       // disable editing ongoing sprints
@@ -70,7 +102,7 @@ export class SprintComponent implements OnInit {
 
   // manually end sprint
   onEnd(): void {
-    this.sprint_data.sprint_status = 'Inactive';
+    this.sprint_data.sprint_status = 'Complete';
     this.db.updateSprint(this.sprint_data).subscribe(
       res => { console.log(res) },
       err => { console.log(err) }
