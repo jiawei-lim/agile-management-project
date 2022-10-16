@@ -1,0 +1,21 @@
+<div>
+    <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+</div>  
+<form [formGroup]="barChartDatesForm" (ngSubmit)="processData()">
+    <div class="gird-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="picker1" placeholder="yyyy-mm-dd" name="start_date" formControlName="start_date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker2" placeholder="yyyy-mm-dd" name="end_date" formControlName="end_date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" style="float:right" color="primary">{{buttonName}}</button>
+</form>

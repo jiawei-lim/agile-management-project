@@ -1,5 +1,3 @@
-import { Time } from "@angular/common";
-
 export type priority = "High" | "Medium" | "Low";
 
 export interface task {
@@ -16,7 +14,6 @@ export interface task {
     sprint_id: number,
     total_time:string
 }
-
 
 export interface sprint {
     sprint_id: number,
@@ -49,4 +46,22 @@ export interface MemberView{
     total_time:string,
     days_worked:number,
     avg_time:string
+
+}
+
+export interface barChartDates { 
+    startDate: string,
+    endDate: string
+}
+
+export interface barChartData { 
+    type: string,
+    name: string,
+    showInLegend: string,
+    yValueFormatString: string,
+    color: string,
+    dataPoints: {
+        y: number,
+        label: string
+    }[]
 }

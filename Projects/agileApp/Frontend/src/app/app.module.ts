@@ -40,6 +40,9 @@ import { TeamDashboardComponent } from './team-dashboard/team-dashboard.componen
 import { MemberformComponent } from './memberform/memberform.component';
 import { TimeformComponent } from './timeform/timeform.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { StackedbarchartComponent } from './stackedbarchart/stackedbarchart.component';
+import * as CanvasJSAngularChart from '../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
   declarations: [
@@ -56,7 +59,9 @@ import { HighchartsChartModule } from 'highcharts-angular';
     SprintFormComponent,
     TeamDashboardComponent,
     MemberformComponent,
-    TimeformComponent
+    TimeformComponent,
+    CanvasJSChart,
+    StackedbarchartComponent
   ],
   imports: [
     HttpClientModule,
