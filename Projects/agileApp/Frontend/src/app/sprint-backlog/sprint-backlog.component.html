@@ -13,7 +13,7 @@
         <app-sprint [sprint_id]="3"></app-sprint>
         </mat-expansion-panel> -->
 
-        <mat-expansion-panel>
+        <mat-expansion-panel [expanded]="sprint.sprint_status == 'Active'">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     {{sprint.sprint_name}}
