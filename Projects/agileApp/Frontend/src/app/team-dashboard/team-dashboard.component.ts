@@ -56,7 +56,7 @@ export class TeamDashboardComponent implements OnInit {
         verticalAlign: "top",
         y: 20,
         itemMarginBottom:10
-    },xAxis:{categories:['Assignee']},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(totaltimedata,true)}
+    },xAxis:{categories:['Members']},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(totaltimedata,true)}
  
     
     this.chartOptions2= {chart: {
