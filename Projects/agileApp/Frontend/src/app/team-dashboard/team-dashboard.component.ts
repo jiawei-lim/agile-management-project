@@ -15,8 +15,8 @@ import * as Highcharts from 'highcharts';
 export class TeamDashboardComponent implements OnInit {
   Highcharts1: typeof Highcharts = Highcharts
   Highcharts2: typeof Highcharts = Highcharts
-  chartOptions1!: Highcharts.Options 
-  chartOptions2!:Highcharts.Options
+  chartOptions1: Highcharts.Options ={}
+  chartOptions2: Highcharts.Options ={}
   updateFlag1:boolean = false
   updateFlag2:boolean = false
   oneToOneFlag: boolean = true;
@@ -29,7 +29,7 @@ export class TeamDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeam();
-    this.getView(false); 
+    this.getView(true); 
 
   }
 
@@ -41,7 +41,10 @@ export class TeamDashboardComponent implements OnInit {
       const avgtimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.avg_time}))
       // console.log(totaltimedata)
       // console.log(avgtimedata)
-      this.chartOptions1= {title:{text:"Total Hours"}, plotOptions : {
+      this.chartOptions1= {chart: {
+        type: 'bar',
+        inverted: true
+    },title:{text:"Total Hours"}, plotOptions : {
         series: {
            stacking: 'normal'
         }
@@ -54,9 +57,12 @@ export class TeamDashboardComponent implements OnInit {
         y: 20,
         itemMarginBottom:10
     },xAxis:{categories:['Assignee']},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(totaltimedata,true)}
-      
+ 
     
-    this.chartOptions2= {title:{text:"Average Hours"},xAxis:{categories:totaltimedata.map((x)=>x.name)},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(avgtimedata,false)}
+    this.chartOptions2= {chart: {
+      type: 'bar',
+      inverted: true
+  },title:{text:"Average Hours"},xAxis:{categories:totaltimedata.map((x)=>x.name)},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(avgtimedata,false)}
 
       if(isupdate){
         this.updateFlag1 = true;
@@ -72,16 +78,16 @@ export class TeamDashboardComponent implements OnInit {
   }
 
 
-  createBarSeries<T,U>(lst:{name:string,time:string}[],flag:boolean):{name:string,data:Number[],type:string,showInLegend:boolean}[]|{name:string,colorByPoint:boolean,data:Number[],type:string,showInLegend:boolean}[]{
+  createBarSeries<T,U>(lst:{name:string,time:string}[],flag:boolean):{name:string,data:Number[],showInLegend:boolean}[]|{name:string,colorByPoint:boolean,data:Number[],type:string,showInLegend:boolean}[]{
 
     if(flag){
-      const series = lst.map((res)=>({name:res.name,data:[this.calculateTime(res.time)],type:"bar",showInLegend:true}))
+      const series = lst.map((res)=>({name:res.name,data:[this.calculateTime(res.time)],showInLegend:true}))
       // console.log(series)
       return series
     }
     else{
       const timedata = lst.map((x)=>this.calculateTime(x.time))
-      const series = [{name:"average time",colorByPoint:true,data:timedata,type:'bar',showInLegend: false}]
+      const series = [{name:"average time",colorByPoint:true,data:timedata,showInLegend: false}]
       // console.log(series)
       return series
     }

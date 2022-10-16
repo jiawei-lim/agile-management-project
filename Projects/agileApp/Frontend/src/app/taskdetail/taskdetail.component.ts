@@ -25,10 +25,10 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
 
   activity_data!:activity[];
   displayedColumns: string[] = ['member_id', 'activity_desc', 'activity_datetime', 'activity_dur','actions'];
-  dataSource:MatTableDataSource<activity>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort,{ static: false }) sort: MatSort;
-  member_arr:team[];
+  dataSource!:MatTableDataSource<activity>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort,{ static: false }) sort!: MatSort;
+  member_arr!:team[];
 
 
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
@@ -40,6 +40,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
     }
 
   ngOnInit(): void {
+    console.log(this.data)
     this.db.getAllActivity().subscribe(
       (res)=>{
         this.activity_data = res.filter((x:activity)=>x.task_id==this.data.task_id)

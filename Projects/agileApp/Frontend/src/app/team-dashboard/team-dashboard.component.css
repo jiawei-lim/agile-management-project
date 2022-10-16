@@ -1,5 +1,5 @@
 .text_button{
-    margin:10px;
+    margin:30px;
     padding: 10px;
     line-height: 18px;
     height: auto;
@@ -8,6 +8,7 @@
     left: 20px;
 }
 .grid-container {
+    position:relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 15px;
@@ -15,13 +16,13 @@
 }
 
 .team-card{
-    margin:10px;
+    margin: auto;
     border-style: solid;
     border-width: thin;
-    max-width: 500px;
+    width: 500px;
 }
 
 .time{
-    width: 600px;
+    margin:auto;
 
 }
