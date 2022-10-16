@@ -1,7 +1,7 @@
 <div class="grid-container">
-    <highcharts-chart class="total_hours" [Highcharts]="Highcharts1" [options]="chartOptions1" >   
+    <highcharts-chart class="time" [Highcharts]="Highcharts1" [options]="chartOptions1" [(update)]="updateFlag1"[oneToOne]="oneToOneFlag">   
     </highcharts-chart>
-    <highcharts-chart class="total_hours" [Highcharts]="Highcharts2" [options]="chartOptions2" >   
+    <highcharts-chart class="time" [Highcharts]="Highcharts2" [options]="chartOptions2" [(update)]="updateFlag2"[oneToOne]="oneToOneFlag" >   
     </highcharts-chart>
 </div>
 

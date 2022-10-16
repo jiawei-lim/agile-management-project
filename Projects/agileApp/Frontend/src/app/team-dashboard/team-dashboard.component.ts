@@ -17,7 +17,9 @@ export class TeamDashboardComponent implements OnInit {
   Highcharts2: typeof Highcharts = Highcharts
   chartOptions1!: Highcharts.Options 
   chartOptions2!:Highcharts.Options
-
+  updateFlag1:boolean = false
+  updateFlag2:boolean = false
+  oneToOneFlag: boolean = true;
 
   DialogRef!: MatDialogRef<MemberformComponent>;
   teamlist:team[] = [];
@@ -27,18 +29,18 @@ export class TeamDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeam();
-    this.getView(); 
+    this.getView(false); 
 
   }
 
-  getView():void{
+  getView(isupdate:boolean):void{
     this.db.getMemberView().subscribe(res=>{
       this.memberviewlist = res;
       // console.log(this.memberviewlist)
       const totaltimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.total_time}))
       const avgtimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.avg_time}))
-      console.log(totaltimedata)
-      console.log(avgtimedata)
+      // console.log(totaltimedata)
+      // console.log(avgtimedata)
       this.chartOptions1= {title:{text:"Total Hours"}, plotOptions : {
         series: {
            stacking: 'normal'
@@ -55,6 +57,11 @@ export class TeamDashboardComponent implements OnInit {
       
     
     this.chartOptions2= {title:{text:"Average Hours"},xAxis:{categories:totaltimedata.map((x)=>x.name)},yAxis:{title: {text: 'Hours'},labels: {overflow: 'justify'}},series:<Highcharts.SeriesOptionsType[]>this.createBarSeries(avgtimedata,false)}
+
+      if(isupdate){
+        this.updateFlag1 = true;
+        this.updateFlag2 = true;
+      }
     })
   }
 
@@ -69,13 +76,13 @@ export class TeamDashboardComponent implements OnInit {
 
     if(flag){
       const series = lst.map((res)=>({name:res.name,data:[this.calculateTime(res.time)],type:"bar",showInLegend:true}))
-      console.log(series)
+      // console.log(series)
       return series
     }
     else{
       const timedata = lst.map((x)=>this.calculateTime(x.time))
-      console.log(timedata)
       const series = [{name:"average time",colorByPoint:true,data:timedata,type:'bar',showInLegend: false}]
+      // console.log(series)
       return series
     }
     
@@ -93,9 +100,9 @@ export class TeamDashboardComponent implements OnInit {
     this.DialogRef.componentInstance.submitClicked.subscribe(result => {
       console.log("submit",result)
       this.db.insertMember(result).subscribe(res=>{
-        this.db.getMembers().subscribe(res=>{
-          this.teamlist = res
-        })
+        
+        this.getTeam();
+        this.getView(true);
         
       },err=>{
         console.log(err)
@@ -111,7 +118,9 @@ export class TeamDashboardComponent implements OnInit {
     this.DialogRef.componentInstance.submitClicked.subscribe(result=>{
       this.db.updateMember(result).subscribe(res=>{
           console.log("success");
-          this.getTeam()
+          this.getTeam();
+          this.getView(true);
+        
       },err=>{
         console.log(err)
       })
@@ -121,11 +130,12 @@ export class TeamDashboardComponent implements OnInit {
   } 
 
   onDelete(member:team):void{
-    console.log("Delete this:",member)
+    // console.log("Delete this:",member)
     this.db.deleteMember(member).subscribe(res=>{
       console.log("Success");
       this.getTeam();
-      console.log(this.teamlist)
+      this.getView(true);
+          
       
     },err=>{
 
