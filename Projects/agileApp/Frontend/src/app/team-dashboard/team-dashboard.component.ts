@@ -97,7 +97,8 @@ export class TeamDashboardComponent implements OnInit {
 
   calculateTime(time:string):number{
     const a = time.split(":")
-    const hour = Number(a[0])+Number(a[1])/60 + Number(a[2])/3600
+    const hour = Number((Number(a[0])+Number(a[1])/60 + Number(a[2])/3600).toPrecision(3))
+
     return hour
   }
 
