@@ -42,7 +42,7 @@ export class SprintComponent implements OnInit {
 
       for (let i = 0; i < res.length; i++) {
         // hiding / disabling buttons
-        if (res[i].sprint_status === "Active") {
+        if (res[i].sprint_status === "Active" || res[i].sprint_status === "Completed") {
           this.canStart = false;
         }
         if (res[i].sprint_id == this.sprint_id) {
@@ -68,8 +68,8 @@ export class SprintComponent implements OnInit {
             window.alert(res[i].sprint_name + " has been started automatically. ")
           }
         } else if (end < today) {
-          if (res[i].sprint_status != "Complete") {
-            res[i].sprint_status = "Complete";
+          if (res[i].sprint_status != "Completed") {
+            res[i].sprint_status = "Completed";
             this.db.updateSprint(res[i]).subscribe(
               res => { console.log(res) },
               err => { console.log(err) }
@@ -102,7 +102,7 @@ export class SprintComponent implements OnInit {
 
   // manually end sprint
   onEnd(): void {
-    this.sprint_data.sprint_status = 'Complete';
+    this.sprint_data.sprint_status = 'Completed';
     this.db.updateSprint(this.sprint_data).subscribe(
       res => { console.log(res) },
       err => { console.log(err) }

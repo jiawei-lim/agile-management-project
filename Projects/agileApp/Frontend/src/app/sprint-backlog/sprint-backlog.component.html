@@ -20,7 +20,8 @@
                 </mat-panel-title>
                 <mat-panel-description>
                     <button class="tag-btn" mat-flat-button
-                        [color]="sprint.sprint_status== 'Inactive' ? 'primary' : (sprint.sprint_status == 'Active' ? 'warn' : 'accent')"
+                        [disabled]="sprint.sprint_status == 'Inactive'"
+                        [color]="sprint.sprint_status == 'Completed' ? 'primary' : 'warn'"
                         [disableRipple]="true">{{sprint.sprint_status}}</button>
                 </mat-panel-description>
             </mat-expansion-panel-header>
