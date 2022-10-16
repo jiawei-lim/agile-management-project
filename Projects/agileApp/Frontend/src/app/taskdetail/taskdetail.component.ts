@@ -19,6 +19,8 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
 
   @Output() submitClicked = new EventEmitter<task>();
 
+  sprintName = "";
+
   DialogRef!: MatDialogRef<TaskformComponent>;
   DialogRef2!:MatDialogRef<TimelogComponent>;
   TimeDialogRef:MatDialogRef<TimeformComponent>;
@@ -48,7 +50,17 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
       },
       (err)=>console.log
     )
-    
+    this.db.getSprints().subscribe(
+      res => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].sprint_id == this.data.sprint_id) {
+            this.sprintName = res[i].sprint_name
+            break;
+          }
+        }
+      },
+      err => { console.log(err) }
+    )
   }
 
   ngAfterViewInit(): void {
@@ -64,6 +76,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
       return false
     }
   }
+
 
   onEdit(){
     this.DialogRef = this.dialog.open(TaskformComponent,{

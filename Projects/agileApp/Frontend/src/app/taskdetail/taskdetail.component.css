@@ -3,6 +3,14 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.detail-grid h2{
+  font-size: 18px;
+}
+
+.detail-grid p{
+  font-size: 14px;
+}
+
 .task-detail{
     margin: 20px;
 }

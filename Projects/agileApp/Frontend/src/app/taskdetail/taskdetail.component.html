@@ -1,7 +1,7 @@
  <div >
     <mat-tab-group >
         
-        <mat-tab label="Task Detail">
+        <mat-tab label="Task Details">
             <div style="float: right;">
                 <button mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
                 <button mat-icon-button (click)="onDelete()"><mat-icon>delete</mat-icon></button>
@@ -11,7 +11,7 @@
             <div class="detail-grid">
 
                 <div class ="task-detail">
-                    <h2>Task Name</h2>
+                    <h2>Name</h2>
                     <p>{{data.name}}</p>
                 </div>
                 
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class ="task-detail">
-                    <h2>Assigned To</h2>
+                    <h2>Assignee</h2>
                     <p>{{data.assignee}}</p>
                 </div>
 
@@ -44,16 +44,16 @@
                     <h2>Tag</h2>
                     <p>{{data.tag}}</p>
                 </div>
-                
+
                 <div class ="task-detail">
                     <h2>Sprint</h2>
-                    <p>{{data.name}}</p>
+                    <p>{{sprintName}}</p>
                 </div>
 
             </div>
         </mat-tab>
 
-        <mat-tab label="Time Log" *ngIf="isSprint()">
+        <mat-tab label="Time Logs" *ngIf="isSprint()">
                 <div class="mat-elevation-z8">
                     <table mat-table [dataSource]="dataSource" matSort>
                     <!-- Name Column -->
