@@ -59,7 +59,7 @@ export class SprintComponent implements OnInit {
         end.setSeconds(59);
 
         if (start <= today) {
-          if (res[i].sprint_status != "Active") {
+          if (res[i].sprint_status != "Inactive") {
             res[i].sprint_status = "Active";
             this.db.updateSprint(res[i]).subscribe(
               res => { console.log(res) },
