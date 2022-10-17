@@ -71,6 +71,7 @@ export class TeamDashboardComponent implements OnInit {
         }, title: { text: "Average Hours" }, xAxis: { categories: totaltimedata.map((x) => x.name) }, yAxis: { title: { text: 'Hours' }, labels: { overflow: 'justify' } }, series: <Highcharts.SeriesOptionsType[]>this.createBarSeries(avgtimedata, false)
       }
 
+      console.log(this.chartOptions2)
       if (isupdate) {
         this.updateFlag1 = true;
         this.updateFlag2 = true;
@@ -95,7 +96,7 @@ export class TeamDashboardComponent implements OnInit {
     else {
       const timedata = lst.map((x) => this.calculateTime(x.time))
       const series = [{ name: "average time", colorByPoint: true, data: timedata, showInLegend: false }]
-      // console.log(series)
+      console.log(series)
       return series
     }
 

@@ -12,7 +12,8 @@ import * as Highcharts from 'highcharts';
 export class MemberBarchartComponent implements OnInit {
 
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {};
+  chartOptions: Highcharts.Options = {}
+  oneToOneFlag: boolean = true;
 
   activityList: activity[] = [];
 
@@ -112,7 +113,7 @@ export class MemberBarchartComponent implements OnInit {
       series.push(temp);
     }
 
-    console.log(series);
+    console.log("series",series);
     this.processChartData(series);
   }
 
@@ -121,7 +122,6 @@ export class MemberBarchartComponent implements OnInit {
     let series = [];
     for (let i = 0; i < data.length; i++) {
       let temp = {
-        type: 'bar',
         name: data[i].name,
         data: data[i].data,
         showInLegend: true
