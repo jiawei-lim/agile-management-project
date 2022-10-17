@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DbService } from '../services/db.service';
-import { team, activity } from '../types';
+import { team, activity, task } from '../types';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -57,7 +57,9 @@ export class MemberBarchartComponent implements OnInit {
     for (let i = 0; i < activityList.length; i++) {
       let unique = true;
       for (let j = 0; j < unique_days.length; j++) {
-        if (activityList[i].activity_datetime == unique_days[j]) {
+        let [date1, time1] = activityList[i].activity_datetime.split('T');
+        let [date2, time2] = unique_days[j].split('T')
+        if (date1 == date2) {
           unique = false;
         }
       }
@@ -79,38 +81,45 @@ export class MemberBarchartComponent implements OnInit {
       }
     }
 
-    let series = [];
+    this.db.getTasks().subscribe(
+      res => {
+        let taskList: task[] = res;
+        let series = [];
 
-    for (let i = 0; i < unique_tasks.length; i++) {
+        for (let i = 0; i < unique_tasks.length; i++) {
 
-      let name = '';
-      for (let j = 0; j < activityList.length; j++) {
-        if (unique_tasks[i] == activityList[j].task_id) {
-          name = activityList[j].activity_desc;
-          break;
-        }
-      }
-
-      let data: Number[] = [];
-      for (let j = 0; j < unique_days.length; j++) {
-        for (let k = 0; k < activityList.length; k++) {
-          if (unique_days[j] == activityList[k].activity_datetime && name == activityList[k].activity_desc) {
-            data.push(this.calculateTime(activityList[k].activity_dur));
-          } else if (name == activityList[k].activity_desc) {
-            data.push(0);
+          let name = '';
+          for (let j = 0; j < taskList.length; j++) {
+            if (unique_tasks[i] == taskList[j].task_id) {
+              name = taskList[j].name;
+              break;
+            }
           }
+
+          let data: Number[] = [];
+          for (let j = 0; j < unique_days.length; j++) {
+            for (let k = 0; k < activityList.length; k++) {
+              let [date1, time1] = activityList[k].activity_datetime.split('T');
+              let [date2, time2] = unique_days[j].split('T')
+              if (date1 == date2 && unique_tasks[i] == activityList[k].task_id) {
+                data.push(this.calculateTime(activityList[k].activity_dur));
+              } else if (unique_tasks[i] == activityList[k].task_id) {
+                data.push(0);
+              }
+            }
+          }
+
+          let temp = {
+            name: name,
+            data: data,
+          }
+          series.push(temp);
         }
-      }
 
-      let temp = {
-        name: name,
-        data: data,
+        console.log("unique days:", unique_days.length);
+        this.processChartData(series, unique_days);
       }
-      series.push(temp);
-    }
-
-    console.log("series",series);
-    this.processChartData(series, unique_days);
+    )
   }
 
   processChartData(data: any, date: any): void {
@@ -133,7 +142,6 @@ export class MemberBarchartComponent implements OnInit {
       date[i] = dateStr + " (" + dayStr + ")";
     }
 
-    // series = series.reverse();
     date = date.reverse();
 
     this.getChart(series, date)
