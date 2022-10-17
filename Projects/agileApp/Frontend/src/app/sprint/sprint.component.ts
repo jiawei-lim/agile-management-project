@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { DbService } from '../services/db.service';
 import { sprint, task } from '../types';
 import { SprintFormComponent } from '../sprint-form/sprint-form.component';
+import { TaskListServicesService } from '../services/task-list-services.service';
 
 @Component({
   selector: 'app-sprint',
@@ -26,7 +27,8 @@ export class SprintComponent implements OnInit {
 
   constructor(
     private db: DbService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private notification:TaskListServicesService) {
 
   }
 
@@ -95,7 +97,7 @@ export class SprintComponent implements OnInit {
   onStart(): void {
     this.sprint_data.sprint_status = 'Active';
     this.db.updateSprint(this.sprint_data).subscribe(
-      res => { console.log(res) },
+      res => { console.log(res); this.notification.sendNotification(true) },
       err => { console.log(err) }
     )
   }
@@ -104,7 +106,7 @@ export class SprintComponent implements OnInit {
   onEnd(): void {
     this.sprint_data.sprint_status = 'Completed';
     this.db.updateSprint(this.sprint_data).subscribe(
-      res => { console.log(res) },
+      res => { console.log(res); this.notification.sendNotification(true) },
       err => { console.log(err) }
     )
   }
@@ -118,7 +120,7 @@ export class SprintComponent implements OnInit {
     this.DialogRef.componentInstance.updateClicked.subscribe(res => {
       console.log(res);
       this.db.updateSprint(res).subscribe(
-        res => { console.log(res) },
+        res => { console.log(res); this.notification.sendNotification(true) },
         err => { console.log(err) }
       )
     })
@@ -133,7 +135,7 @@ export class SprintComponent implements OnInit {
       }
       // remove from DB
       this.db.deleteSprint(this.sprint_data).subscribe(
-        res => { console.log(res) },
+        res => { console.log(res); this.notification.sendNotification(true) },
         err => { console.log(err) }
       )
     }
