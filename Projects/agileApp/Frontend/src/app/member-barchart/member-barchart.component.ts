@@ -92,15 +92,12 @@ export class MemberBarchartComponent implements OnInit {
       }
 
       let data: Number[] = [];
-      let date: String[] = [];
       for (let j = 0; j < unique_days.length; j++) {
         for (let k = 0; k < activityList.length; k++) {
           if (unique_days[j] == activityList[k].activity_datetime && name == activityList[k].activity_desc) {
             data.push(this.calculateTime(activityList[k].activity_dur));
-            date.push(activityList[k].activity_datetime)
           } else if (name == activityList[k].activity_desc) {
             data.push(0);
-            date.push(activityList[k].activity_datetime)
           }
         }
       }
@@ -108,17 +105,15 @@ export class MemberBarchartComponent implements OnInit {
       let temp = {
         name: name,
         data: data,
-        date: date
       }
       series.push(temp);
     }
 
     console.log("series",series);
-    this.processChartData(series);
+    this.processChartData(series, unique_days);
   }
 
-  processChartData(data: any): void {
-    let dates = [];
+  processChartData(data: any, date: any): void {
     let series = [];
     for (let i = 0; i < data.length; i++) {
       let temp = {
@@ -128,15 +123,23 @@ export class MemberBarchartComponent implements OnInit {
       }
       series.push(temp);
     }
-    
-    for (let i = 0; i < data[0].date.length; i++) {
-      dates.push(data[0].date[i]);
+
+    const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    for (let i = 0; i < date.length; i++) {
+      let [dateStr, timeStr] = date[i].split('T');
+      let dateObj = new Date(dateStr);
+      let dayStr = weekday[dateObj.getDay()];
+      date[i] = dateStr + " (" + dayStr + ")";
     }
 
-    this.getChart(dates, series)
+    // series = series.reverse();
+    date = date.reverse();
+
+    this.getChart(series, date)
   }
 
-  getChart(dates: any, series: any): void {
+  getChart(series: any, date: any): void {
     // make the chart based on the days and tasks
     this.chartOptions = {
       chart: {
@@ -159,7 +162,7 @@ export class MemberBarchartComponent implements OnInit {
         itemMarginBottom: 10
       },
       xAxis: {
-        categories: dates
+        categories: date
       },
       yAxis: {
         title: {
