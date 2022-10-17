@@ -12,6 +12,7 @@
     <mat-card class="team-card" *ngFor="let member of teamlist">
         <button mat-icon-button (click)="onEdit(member)"style="float: right;"><mat-icon>edit</mat-icon></button>
         <button mat-icon-button (click)="onDelete(member)"style="float: right;"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button (click)="openDialog('0ms', '0ms')"style="float: right;"><mat-icon>schedule</mat-icon></button>
         <mat-card-title>{{member.member_name}}</mat-card-title>
         <mat-card-subtitle>{{member.member_email}}</mat-card-subtitle>
     </mat-card>

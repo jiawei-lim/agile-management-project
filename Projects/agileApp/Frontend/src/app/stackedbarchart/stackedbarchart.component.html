@@ -1,6 +1,6 @@
 <div>
-    <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
-</div>  
+    <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height: '360px'}" (chartInstance)="getChartInstance($event)" ></canvasjs-chart>      
+ </div>  
 <form [formGroup]="barChartDatesForm" (ngSubmit)="processData()">
     <div class="gird-form">
         <mat-form-field appearance="outline">

@@ -10,7 +10,7 @@ import { DbService } from '../services/db.service';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  member_data:team;
+  member_data!:team;
   colorMappings = {
     "High":"#d17977",
     "Medium":"#FFDDA2",

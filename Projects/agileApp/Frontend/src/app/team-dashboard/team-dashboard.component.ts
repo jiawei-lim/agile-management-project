@@ -1,10 +1,11 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MemberformComponent } from '../memberform/memberform.component';
 import { DbService } from '../services/db.service';
 import { team,MemberView } from '../types';
 import * as Highcharts from 'highcharts';
+import { StackedbarchartComponent } from '../stackedbarchart/stackedbarchart.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./team-dashboard.component.css'],
 })
 export class TeamDashboardComponent implements OnInit {
+  @Input () memberItem!: team
   Highcharts1: typeof Highcharts = Highcharts
   Highcharts2: typeof Highcharts = Highcharts
   chartOptions1!: Highcharts.Options 
@@ -20,6 +22,7 @@ export class TeamDashboardComponent implements OnInit {
 
 
   DialogRef!: MatDialogRef<MemberformComponent>;
+  DialogRef2!: MatDialogRef<StackedbarchartComponent>
   teamlist:team[] = [];
   memberviewlist!:MemberView[]
 
@@ -31,14 +34,22 @@ export class TeamDashboardComponent implements OnInit {
 
   }
 
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.DialogRef2 = this.dialog.open(StackedbarchartComponent, {
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data:this.memberItem
+    });
+  }
+
   getView():void{
     this.db.getMemberView().subscribe(res=>{
       this.memberviewlist = res;
       // console.log(this.memberviewlist)
       const totaltimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.total_time}))
       const avgtimedata = this.memberviewlist.map((x)=>({name:x.member_name,time:x.avg_time}))
-      console.log(totaltimedata)
-      console.log(avgtimedata)
+      // console.log(totaltimedata)
+      // console.log(avgtimedata)
       this.chartOptions1= {title:{text:"Total Hours"}, plotOptions : {
         series: {
            stacking: 'normal'
@@ -69,17 +80,15 @@ export class TeamDashboardComponent implements OnInit {
 
     if(flag){
       const series = lst.map((res)=>({name:res.name,data:[this.calculateTime(res.time)],type:"bar",showInLegend:true}))
-      console.log(series)
+      // console.log(series)
       return series
     }
     else{
       const timedata = lst.map((x)=>this.calculateTime(x.time))
-      console.log(timedata)
+      // console.log(timedata)
       const series = [{name:"average time",colorByPoint:true,data:timedata,type:'bar',showInLegend: false}]
       return series
     }
-    
-
   }
 
   calculateTime(time:string):number{
