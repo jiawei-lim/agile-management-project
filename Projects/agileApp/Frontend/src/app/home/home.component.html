@@ -1,1 +1,28 @@
-<h1>Welcome to the agile managment tool!</h1>
+<div *ngIf="activeSprint.length > 0; else welcomePage">
+    <div class="sprint-wrapper" *ngFor="let sprint of activeSprint">
+        <mat-accordion>
+            <mat-expansion-panel expanded="True">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{sprint.sprint_name}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <button class="tag-btn" mat-flat-button [disabled]="sprint.sprint_status == 'Inactive'"
+                            [color]="sprint.sprint_status == 'Completed' ? 'primary' : 'warn'"
+                            [disableRipple]="true">{{sprint.sprint_status}}</button>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-sprint [sprint_id]="sprint.sprint_id"></app-sprint>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>
+<ng-template #welcomePage>
+    <div class="centered">
+        <h1>There are currently no ongoing sprints.</h1>
+    </div>
+</ng-template>
+
+<div style="height: 150px"></div>
+
+<div class="spacer"></div>
