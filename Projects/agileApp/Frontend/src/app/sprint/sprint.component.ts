@@ -42,7 +42,7 @@ export class SprintComponent implements OnInit {
 
       for (let i = 0; i < res.length; i++) {
         // hiding / disabling buttons
-        if (res[i].sprint_status === "Active" || res[i].sprint_status === "Completed") {
+        if (res[i].sprint_status === "Active") {
           this.canStart = false;
         }
         if (res[i].sprint_id == this.sprint_id) {

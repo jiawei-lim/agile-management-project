@@ -1,5 +1,5 @@
 <div>
-    <button *ngIf="canStart" mat-raised-button class="btn start" (click)="onStart()">Start</button>
+    <button *ngIf="canStart" mat-raised-button class="btn start" (click)="onStart()" [disabled]="sprint_data.sprint_status == 'Completed'">Start</button>
     <button *ngIf="canEnd" mat-raised-button class="btn end" (click)="onEnd()">End</button>
     <button mat-icon-button (click)="onEdit()" [disabled]="ongoing" [title]="editTitle">
         <mat-icon>edit</mat-icon>

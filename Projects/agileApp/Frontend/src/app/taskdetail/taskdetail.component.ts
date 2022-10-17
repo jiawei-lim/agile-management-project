@@ -74,6 +74,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
         }
       }
     )
+    console.log(this.data);
   }
 
   ngAfterViewInit(): void {
