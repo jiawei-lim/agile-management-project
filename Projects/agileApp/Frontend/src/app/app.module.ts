@@ -40,6 +40,7 @@ import { TeamDashboardComponent } from './team-dashboard/team-dashboard.componen
 import { MemberformComponent } from './memberform/memberform.component';
 import { TimeformComponent } from './timeform/timeform.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { MemberBarchartComponent } from './member-barchart/member-barchart.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     SprintFormComponent,
     TeamDashboardComponent,
     MemberformComponent,
-    TimeformComponent
+    TimeformComponent,
+    MemberBarchartComponent
   ],
   imports: [
     HttpClientModule,

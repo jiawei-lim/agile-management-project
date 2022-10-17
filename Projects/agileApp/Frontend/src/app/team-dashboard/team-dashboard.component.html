@@ -1,7 +1,9 @@
 <div class="grid-container">
-    <highcharts-chart class="time" [Highcharts]="Highcharts1" [options]="chartOptions1" [(update)]="updateFlag1"[oneToOne]="oneToOneFlag">   
+    <highcharts-chart class="time" [Highcharts]="Highcharts1" [options]="chartOptions1" [(update)]="updateFlag1"
+        [oneToOne]="oneToOneFlag">
     </highcharts-chart>
-    <highcharts-chart class="time" [Highcharts]="Highcharts2" [options]="chartOptions2" [(update)]="updateFlag2"[oneToOne]="oneToOneFlag" >   
+    <highcharts-chart class="time" [Highcharts]="Highcharts2" [options]="chartOptions2" [(update)]="updateFlag2"
+        [oneToOne]="oneToOneFlag">
     </highcharts-chart>
 </div>
 
@@ -10,15 +12,22 @@
 
 <div class="grid-container">
     <mat-card class="team-card" *ngFor="let member of teamlist">
-        <button mat-icon-button (click)="onEdit(member)"style="float: right;"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button (click)="onDelete(member)"style="float: right;"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button (click)="onDelete(member)" style="float: right;" title="Remove">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onChart(member)" style="float: right;" title="Member effort">
+            <mat-icon style="font-size: 30px;">bar_chart</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onEdit(member)" style="float: right;" title="Edit">
+            <mat-icon>edit</mat-icon>
+        </button>
         <mat-card-title>{{member.member_name}}</mat-card-title>
         <mat-card-subtitle>{{member.member_email}}</mat-card-subtitle>
     </mat-card>
 </div>
 
 
-<button mat-raised-button color="primary" class="text_button" (click)="openForm()"> 
+<button mat-raised-button color="primary" class="text_button" (click)="openForm()">
     Add Member
 </button>
 
@@ -27,4 +36,3 @@
 <div style="height: 150px"></div>
 
 <div class="spacer"></div>
-
