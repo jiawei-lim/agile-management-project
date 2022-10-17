@@ -66,6 +66,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
     )
     this.db.getMembers().subscribe(
       res => {
+        this.member_arr = res;
         for (let i = 0; i < res.length; i++) {
           if (res[i].member_id == this.data.member_id) {
             this.assignee = res[i].member_name;
