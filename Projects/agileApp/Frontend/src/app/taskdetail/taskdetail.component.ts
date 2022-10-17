@@ -19,6 +19,8 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
 
   @Output() submitClicked = new EventEmitter<task>();
 
+  sprintName = "";
+
   DialogRef!: MatDialogRef<TaskformComponent>;
   DialogRef2!:MatDialogRef<TimelogComponent>;
   TimeDialogRef!:MatDialogRef<TimeformComponent>;
@@ -29,6 +31,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort,{ static: false }) sort!: MatSort;
   member_arr!:team[];
+  assignee = '';
 
 
   constructor(public dialogRef: MatDialogRef<TaskdetailComponent>,
@@ -50,12 +53,27 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
       },
       (err)=>console.log
     )
-
-    this.db.getMembers().subscribe(
-      (res)=>{this.member_arr = res},
-      err=>console.log
+    this.db.getSprints().subscribe(
+      res => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].sprint_id == this.data.sprint_id) {
+            this.sprintName = res[i].sprint_name
+            break;
+          }
+        }
+      },
+      err => { console.log(err) }
     )
-    
+    this.db.getMembers().subscribe(
+      res => {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].member_id == this.data.member_id) {
+            this.assignee = res[i].member_name;
+            break;
+          }
+        }
+      }
+    )
   }
 
   ngAfterViewInit(): void {
@@ -71,6 +89,7 @@ export class TaskdetailComponent implements OnInit,AfterViewInit {
       return false
     }
   }
+
 
   onEdit(){
     this.DialogRef = this.dialog.open(TaskformComponent,{

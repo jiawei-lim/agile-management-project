@@ -1,7 +1,7 @@
  <div >
     <mat-tab-group >
         
-        <mat-tab label="Task Detail">
+        <mat-tab label="Task Details">
             <div style="float: right;">
                 <button mat-icon-button (click)="onEdit()"><mat-icon>edit</mat-icon></button>
                 <button mat-icon-button (click)="onDelete()"><mat-icon>delete</mat-icon></button>
@@ -9,14 +9,51 @@
             <br>
             
             <div class="detail-grid">
-                <div *ngFor="let item of data | keyvalue" class="task-detail">
-                        <h2>{{item.key}}</h2>
-                        <p>{{item.value}}</p>
+
+                <div class ="task-detail">
+                    <h2>Name</h2>
+                    <p>{{data.name}}</p>
                 </div>
+                
+                <div class ="task-detail">
+                    <h2>Description</h2>
+                    <p>{{data.description}}</p>
+                </div>
+
+                <div class ="task-detail">
+                    <h2>Assignee</h2>
+                    <p>{{assignee}}</p>
+                </div>
+
+                <div class ="task-detail">
+                    <h2>Priority</h2>
+                    <p>{{data.priority}}</p>
+                </div>
+
+                <div class ="task-detail">
+                    <h2>Status</h2>
+                    <p>{{data.status}}</p>
+                </div>
+
+                <div class ="task-detail">
+                    <h2>Due Date</h2>
+                    <p>{{data.due_date}}</p>
+                </div>
+
+                <div class ="task-detail">
+                    <h2>Tag</h2>
+                    <p>{{data.tag}}</p>
+                </div>
+
+                <div class ="task-detail">
+                    <h2>Sprint</h2>
+                    <p>{{sprintName}}</p>
+                </div>
+
             </div>
         </mat-tab>
 
-        <mat-tab label="Time Log" *ngIf="isSprint()">
+        <mat-tab label="Time Logs" *ngIf="isSprint()">
                 <div class="mat-elevation-z8">
                     <table mat-table [dataSource]="dataSource" matSort>
                     <!-- Name Column -->
