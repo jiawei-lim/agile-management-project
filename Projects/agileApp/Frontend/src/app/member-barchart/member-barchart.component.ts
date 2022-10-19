@@ -98,15 +98,25 @@ export class MemberBarchartComponent implements OnInit {
 
           let data: Number[] = [];
           for (let j = 0; j < unique_days.length; j++) {
+            let oldLength = data.length;
             for (let k = 0; k < activityList.length; k++) {
               let [date1, time1] = activityList[k].activity_datetime.split('T');
               let [date2, time2] = unique_days[j].split('T')
-              if (date1 == date2 && unique_tasks[i] == activityList[k].task_id) {
-                data.push(this.calculateTime(activityList[k].activity_dur));
-              } else if (unique_tasks[i] == activityList[k].task_id) {
+              if (unique_tasks[i] == activityList[k].task_id) {
+                if (date1 == date2) {
+                  data.push(this.calculateTime(activityList[k].activity_dur));
+                }
+              }
+              // if (date1 == date2 && unique_tasks[i] == activityList[k].task_id) {
+              //   data.push(this.calculateTime(activityList[k].activity_dur));
+              // } else if (date1 == date2) {
+              //   data.push(0);
+              // }
+            }
+            let newLength = data.length;
+              if (newLength == oldLength) {
                 data.push(0);
               }
-            }
           }
 
           let temp = {
@@ -142,7 +152,7 @@ export class MemberBarchartComponent implements OnInit {
       date[i] = dateStr + " (" + dayStr + ")";
     }
 
-    date = date.reverse();
+    // date = date.reverse();
 
     this.getChart(series, date)
   }
